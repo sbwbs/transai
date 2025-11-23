@@ -1,0 +1,119 @@
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# API Keys & Credentials
+credentials.json
+secrets.json
+.aws/
+.azure/
+
+# Data Files - CUSTOMER/SENSITIVE DATA
+# Block all Excel/CSV files EXCEPT sample data
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.db
+*.sqlite
+*.sqlite3
+
+# Whitelist: Allow sample data files
+!src/data/sample_glossary.json
+!src/data/sample_test_data.json
+!docs/
+
+# Excel temporary files
+~$*.xlsx
+~$*.xls
+.~lock.*
+
+# Translation Results - DO NOT COMMIT
+src/results/
+src/en_ko_results_*.xlsx
+src/*_results_*.xlsx
+src/clinical_protocol_system/data/protocol_glossary.xlsx
+
+# Logs - DO NOT COMMIT
+logs/
+src/logs/
+*.log
+*.logs
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Cache
+.cache/
+*.cache
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Temporary files
+*.bak
+*.backup
+*.orig
+temp/
+tmp/
+
+# Node (if any frontend components)
+node_modules/
+npm-debug.log
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Git
+.gitkeep

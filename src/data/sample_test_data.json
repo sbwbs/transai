@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "language_pair": "ko-en",
+    "created_date": "2025-11-23",
+    "total_segments": 15,
+    "description": "Sample test data for Korean-to-English medical device translation testing",
+    "note": "Synthetic data created for demonstration purposes. Replace with actual data for production testing."
+  },
+  "test_segments": [
+    {
+      "id": 1,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "본 의료기기는 의사의 처방 하에 환자에게 사용되어야 합니다.",
+      "reference_translation": "This medical device should be used in patients under physician prescription.",
+      "category": "regulatory",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "생체적합성 시험은 다음의 기준에 따라 수행되었습니다.",
+      "reference_translation": "Biocompatibility testing was performed according to the following standards.",
+      "category": "device_testing",
+      "difficulty": "medium"
+    },
+    {
+      "id": 3,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "장기 안전성 및 성능 평가를 위한 임상시험이 진행 중입니다.",
+      "reference_translation": "A clinical trial for long-term safety and performance evaluation is currently underway.",
+      "category": "clinical",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "본 기기는 멸균 처리되어 제공되며 일회용으로만 사용 가능합니다.",
+      "reference_translation": "This device is provided in a sterilized state and can only be used once.",
+      "category": "operational",
+      "difficulty": "easy"
+    },
+    {
+      "id": 5,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "부작용이 발생하면 즉시 의료 전문가에게 보고하십시오.",
+      "reference_translation": "If adverse events occur, immediately report to a healthcare professional.",
+      "category": "safety",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "이 장치의 성능은 독립적인 제3자 기관에 의해 검증되었습니다.",
+      "reference_translation": "The performance of this device has been verified by an independent third-party organization.",
+      "category": "regulatory",
+      "difficulty": "medium"
+    },
+    {
+      "id": 7,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "환자 안전 데이터베이스에 모든 이상반응이 기록됩니다.",
+      "reference_translation": "All adverse reactions are recorded in the patient safety database.",
+      "category": "regulatory",
+      "difficulty": "medium"
+    },
+    {
+      "id": 8,
+      "source_lang": "en",
+      "target_lang": "ko",
+      "source_text": "The device is intended for use in hospital and clinical settings.",
+      "reference_translation": "본 기기는 병원 및 임상 환경에서 사용하도록 설계되었습니다.",
+      "category": "operational",
+      "difficulty": "easy"
+    },
+    {
+      "id": 9,
+      "source_lang": "en",
+      "target_lang": "ko",
+      "source_text": "Preclinical testing confirmed biocompatibility with human tissue.",
+      "reference_translation": "전임상 시험으로 인체 조직과의 생체적합성이 확인되었습니다.",
+      "category": "device_testing",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "source_lang": "en",
+      "target_lang": "ko",
+      "source_text": "Users must complete training before operating this medical device.",
+      "reference_translation": "사용자는 이 의료기기를 조작하기 전에 교육을 이수해야 합니다.",
+      "category": "operational",
+      "difficulty": "easy"
+    },
+    {
+      "id": 11,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "재사용 가능 부품은 규정된 절차에 따라 멸균 처리해야 합니다.",
+      "reference_translation": "Reusable components must be sterilized according to established procedures.",
+      "category": "operational",
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "임상 효능성은 무작위 대조 시험을 통해 입증되었습니다.",
+      "reference_translation": "Clinical efficacy was demonstrated through randomized controlled trials.",
+      "category": "clinical",
+      "difficulty": "medium"
+    },
+    {
+      "id": 13,
+      "source_lang": "en",
+      "target_lang": "ko",
+      "source_text": "Regulatory approval was obtained from the competent authorities.",
+      "reference_translation": "규제 당국으로부터 규제 승인을 받았습니다.",
+      "category": "regulatory",
+      "difficulty": "easy"
+    },
+    {
+      "id": 14,
+      "source_lang": "ko",
+      "target_lang": "en",
+      "source_text": "이 기기는 특정 환자 그룹에는 금기사항이 있습니다.",
+      "reference_translation": "This device is contraindicated in specific patient populations.",
+      "category": "safety",
+      "difficulty": "medium"
+    },
+    {
+      "id": 15,
+      "source_lang": "en",
+      "target_lang": "ko",
+      "source_text": "Post-market surveillance data will be continuously monitored.",
+      "reference_translation": "시판 후 감시 데이터는 지속적으로 모니터링됩니다.",
+      "category": "regulatory",
+      "difficulty": "medium"
+    }
+  ]
+}

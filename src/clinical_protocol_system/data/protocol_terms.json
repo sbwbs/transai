@@ -1,0 +1,3127 @@
+{
+  "document_stats": {
+    "paragraph_count": 838,
+    "table_cell_count": 560,
+    "total_korean_items": 1398,
+    "total_english_items": 1398
+  },
+  "term_occurrences": {
+    "임상시험": {
+      "english": "clinical trial",
+      "count": 533,
+      "contexts": [
+        "임상시험 계획서",
+        "본인은 본 임상시험 계획서를 읽고 검토하였고, 본 임상시험 계획서가 임상시험을 진행하는 데에 있어 필요한 모든 정보를 포함하고 있음을 이해하였으며 이에 동의합니다. 본인은 계획된 일정 내에 본 임상시험이 완료될 수 있도록 이에 합당한 노력을 기울일 것입니다. 본인은 본 임상시험을 헬싱키 선언, International council for harmonisa",
+        "[임상시험 계획서 제·개정 이력]"
+      ]
+    },
+    "시험대상자": {
+      "english": "subject",
+      "count": 270,
+      "contexts": [
+        "3.1\t목표한 시험대상자의 수\t33",
+        "3.4\t개별 시험대상자의 임상시험 종료\t37",
+        "3.6\t시험대상자의 대체\t38"
+      ]
+    },
+    "시험책임자": {
+      "english": "principal investigator",
+      "count": 40,
+      "contexts": [
+        "12\t임상시험을 하려는 자의 정보, 시험책임자 성명 및 직책\t88",
+        "12.2\t시험책임자 성명 및 직책\t88",
+        "13.2\t시험책임자 및 시험자\t89"
+      ]
+    },
+    "시험자": {
+      "english": "investigator",
+      "count": 81,
+      "contexts": [
+        "13.2\t시험책임자 및 시험자\t89",
+        "(단, 본 임상시험의 유효성, 안전성 평가에 영향이 없을 것으로 시험자가 판단하는 연구(관찰연구, 후향적 연구 등)의 경우 참여 가능함)",
+        "기타 시험자의 의학적 소견에 따라 본 임상시험의 참여가 부적합하다고 판단된 자"
+      ]
+    },
+    "의뢰자": {
+      "english": "sponsor",
+      "count": 53,
+      "contexts": [
+        "12.1\t임상시험 의뢰자\t88",
+        "의뢰자의 안전성 보고 담당자는 예상하지 못한 중대한 약물이상반응(Suspected unexpected serious adverse reaction, SUSAR) 평가 및 보고 시 ICH E2A 가이드라인에 따라 임상시험 수행이나 결과에 영향을 미치지 않는 범위 내에서 필요한 경우 눈가림 해제를 실시하여 의심되는 약물의 종류를 확인하고 SUSAR 보고서에 이",
+        "목표한 시험대상자 수의 약 50%(무작위배정 기준, 완료 및 중도탈락 포함)가 4주의 투여기를 종료(완료 또는 중도탈락)한 자료에 대해 중간분석을 실시하기 위해 Database Snapshot을 실시할 것이다. 해당 자료는 독립적인 자료 모니터링 위원회(Independent data monitoring committees, IDMC)의 헌장 및 미리 작성/"
+      ]
+    },
+    "임상시험 의뢰자": {
+      "english": "sponsor",
+      "count": 5,
+      "contexts": [
+        "12.1\t임상시험 의뢰자\t88",
+        "시험자는 본 임상시험 중에 수집된 모든 자료를 임상시험 의뢰자가 제공한 e-CRF에 기록하여야 한다. 기록을 위해 사용하는 전자 자료 수집(Electronic data capture, EDC) 시스템은 권한을 부여받은 경우에만 접속할 수 있으며, EDC 시스템을 통해 e-CRF를 입력, 수정, 저장, 삭제하는 모든 추적 사항이 기록될 것이다. 시험자는 전자",
+        "의뢰자는 임상시험에 앞서 사전방문을 실시하며 개시 방문 후 시험대상자를 모집한다. 임상시험이 의약품 임상시험 관리기준에 따라 수행되고 임상시험 자료가 국내·외에서 등록 시 인정될 수 있도록 하기 위해서 임상시험 의뢰자 측에서 모니터링 및 점검을 실시할 수 있다. 시험책임자는 본 계획서에 서명함으로써 점검을 실시함에 동의한 것이다."
+      ]
+    },
+    "임상시험용 의약품": {
+      "english": "investigational product",
+      "count": 188,
+      "contexts": [
+        "1.2\t임상시험용 의약품 프로파일\t27",
+        "6\t임상시험용 의약품의 정보 및 관리\t50",
+        "6.1\t임상시험용 의약품\t50"
+      ]
+    },
+    "시험약": {
+      "english": "investigational product",
+      "count": 23,
+      "contexts": [
+        "6.1.1\t시험약1\t50",
+        "6.1.2\t시험약2\t50",
+        "또한, DWP14012와 같이 ERD에 효과가 입증된 P-CAB 제제를 NERD 치료에 사용하기 위한 임상시험이 국내·외에서 진행되고 있다. Tegoprazan은 국내 NERD 환자 324명을 대상으로 시험약 50 mg, 100 mg의 유효성 및 안전성을 평가하기 위해 위약을 대조약으로 설정하여 3상 임상시험을 실시하였다. 임상시험용 의약품은 4주간 투여하"
+      ]
+    },
+    "대조약": {
+      "english": "comparator",
+      "count": 7,
+      "contexts": [
+        "국내 ERD 환자를 대상으로 DWP14012 40 mg의 유효성 및 안전성을 평가하기 위해 Esomeprazole 40 mg을 대조약으로 설정하여 다기관, 무작위배정, 이중 눈가림, 3상, 치료적 확증 임상시험(n=263)을 진행하였다.",
+        "또한, DWP14012와 같이 ERD에 효과가 입증된 P-CAB 제제를 NERD 치료에 사용하기 위한 임상시험이 국내·외에서 진행되고 있다. Tegoprazan은 국내 NERD 환자 324명을 대상으로 시험약 50 mg, 100 mg의 유효성 및 안전성을 평가하기 위해 위약을 대조약으로 설정하여 3상 임상시험을 실시하였다. 임상시험용 의약품은 4주간 투여하",
+        "Vonoprazan은 NERD 3상 임상시험을 일본에서 2건, 미국에서 1건 진행하였다. Vonoprazan 일본 첫번째 3상 임상시험은 NERD 환자 827명을 대상으로 시험약 10 mg, 20 mg의 유효성 및 안전성을 평가하기 위해 위약을 대조약으로 설정하여 3상 임상시험을 실시하였고, 4주동안 가슴쓰림이 완전히 소실된 날의 비율은 Full Analy"
+      ]
+    },
+    "위약": {
+      "english": "placebo",
+      "count": 79,
+      "contexts": [
+        "6.1.3\t위약\t50",
+        "또한, DWP14012와 같이 ERD에 효과가 입증된 P-CAB 제제를 NERD 치료에 사용하기 위한 임상시험이 국내·외에서 진행되고 있다. Tegoprazan은 국내 NERD 환자 324명을 대상으로 시험약 50 mg, 100 mg의 유효성 및 안전성을 평가하기 위해 위약을 대조약으로 설정하여 3상 임상시험을 실시하였다. 임상시험용 의약품은 4주간 투여하",
+        "Vonoprazan은 NERD 3상 임상시험을 일본에서 2건, 미국에서 1건 진행하였다. Vonoprazan 일본 첫번째 3상 임상시험은 NERD 환자 827명을 대상으로 시험약 10 mg, 20 mg의 유효성 및 안전성을 평가하기 위해 위약을 대조약으로 설정하여 3상 임상시험을 실시하였고, 4주동안 가슴쓰림이 완전히 소실된 날의 비율은 Full Analy"
+      ]
+    },
+    "이상반응": {
+      "english": "adverse event",
+      "count": 31,
+      "contexts": [
+        "4.5.3\t예상하지 못한 중대한 약물이상반응 발생 시 눈가림 해제\t47",
+        "본 임상시험의 시험약인 DWP14012는 펙수클루정®으로 기허가된 제품이다. DWP14012의 선행된 위식도역류질환 2상 및 3상 임상시험에서 2주의 안전성 추적관찰을 실시하였고, 임상적으로 고려할만한 유의한 안전성 이슈는 보고되지 않았으며, 약물 계열에 대해 예상되는 약물이상반응 외에 다른 중대한 약물이상반응은 관찰되지 않았다.[DWP14012 Inves",
+        "또한, 시험약 유효성분인 Fexuprazan의 반감기는 약 9시간으로 반감기 5배의 기간 후 체내에서 소실될 것을 가정하였을 때, 1주의 추적기간은 시험약으로 인한 약물이상반응의 발생을 확인하기 충분한 시간으로 고려된다."
+      ]
+    },
+    "이상사례": {
+      "english": "adverse event",
+      "count": 136,
+      "contexts": [
+        "8.5.2\t이상사례\t64",
+        "별첨 2. DWP14012(Fexuprazan)의 사용상의 주의사항 및 예측되는 이상사례",
+        "ERD 환자를 대상으로 진행한 3상 임상시험(DW_DWP14012301)에서 임상시험용 의약품 복용 후 8주까지 점막 결손이 완전 치유된 비율은 DWP14012군에서 Esomeprazole 40 mg군 대비 비열등하였고, 안전성 측면에서 임상적으로 유의미한 이상사례는 보고되지 않았다. 또한, 치료 기간 중 위식도역류질환의 주증상인 산역류, 가슴쓰림 증상의 "
+      ]
+    },
+    "약물이상반응": {
+      "english": "adverse drug reaction",
+      "count": 31,
+      "contexts": [
+        "4.5.3\t예상하지 못한 중대한 약물이상반응 발생 시 눈가림 해제\t47",
+        "본 임상시험의 시험약인 DWP14012는 펙수클루정®으로 기허가된 제품이다. DWP14012의 선행된 위식도역류질환 2상 및 3상 임상시험에서 2주의 안전성 추적관찰을 실시하였고, 임상적으로 고려할만한 유의한 안전성 이슈는 보고되지 않았으며, 약물 계열에 대해 예상되는 약물이상반응 외에 다른 중대한 약물이상반응은 관찰되지 않았다.[DWP14012 Inves",
+        "또한, 시험약 유효성분인 Fexuprazan의 반감기는 약 9시간으로 반감기 5배의 기간 후 체내에서 소실될 것을 가정하였을 때, 1주의 추적기간은 시험약으로 인한 약물이상반응의 발생을 확인하기 충분한 시간으로 고려된다."
+      ]
+    },
+    "예상하지 못한 중대한 약물이상반응": {
+      "english": "suspected unexpected serious adverse reaction",
+      "count": 5,
+      "contexts": [
+        "4.5.3\t예상하지 못한 중대한 약물이상반응 발생 시 눈가림 해제\t47",
+        "예상하지 못한 중대한 약물이상반응 발생 시 눈가림 해제",
+        "의뢰자의 안전성 보고 담당자는 예상하지 못한 중대한 약물이상반응(Suspected unexpected serious adverse reaction, SUSAR) 평가 및 보고 시 ICH E2A 가이드라인에 따라 임상시험 수행이나 결과에 영향을 미치지 않는 범위 내에서 필요한 경우 눈가림 해제를 실시하여 의심되는 약물의 종류를 확인하고 SUSAR 보고서에 이"
+      ]
+    },
+    "무작위배정": {
+      "english": "randomization",
+      "count": 58,
+      "contexts": [
+        "4.4\t무작위배정 방법\t45",
+        "8.2.10\t무작위배정\t60",
+        "국내 ERD 환자를 대상으로 DWP14012 40 mg의 유효성 및 안전성을 평가하기 위해 Esomeprazole 40 mg을 대조약으로 설정하여 다기관, 무작위배정, 이중 눈가림, 3상, 치료적 확증 임상시험(n=263)을 진행하였다."
+      ]
+    },
+    "무작위": {
+      "english": "randomized",
+      "count": 58,
+      "contexts": [
+        "4.4\t무작위배정 방법\t45",
+        "8.2.10\t무작위배정\t60",
+        "국내 ERD 환자를 대상으로 DWP14012 40 mg의 유효성 및 안전성을 평가하기 위해 Esomeprazole 40 mg을 대조약으로 설정하여 다기관, 무작위배정, 이중 눈가림, 3상, 치료적 확증 임상시험(n=263)을 진행하였다."
+      ]
+    },
+    "눈가림": {
+      "english": "blinding",
+      "count": 47,
+      "contexts": [
+        "4.5\t눈가림 방법 및 눈가림 해제\t46",
+        "4.5.1\t이중눈가림\t46",
+        "4.5.2\t응급상황 발생 시 눈가림(Blind) 해제\t46"
+      ]
+    },
+    "이중눈가림": {
+      "english": "double-blind",
+      "count": 16,
+      "contexts": [
+        "4.5.1\t이중눈가림\t46",
+        "이상의 내용을 바탕으로 DWP14012를 NERD 환자에 투여할 경우 가슴쓰림에 개선 효과가 있을 것으로 예상하고, 이에 따라 NERD 진단을 받은 환자에서 DWP14012의 유효성 및 안전성을 평가하기 위한 다기관, 이중눈가림, 무작위배정, 위약대조, 평행군, 3상, 치료적 확증 임상시험을 계획하였다.",
+        "다기관, 이중눈가림, 이중위약, 무작위배정, 위약대조, 평행군, 3상, 치료적 확증 임상시험"
+      ]
+    },
+    "공개": {
+      "english": "open-label",
+      "count": 6,
+      "contexts": [
+        "Vonoprazan은 NERD 3상 임상시험을 일본에서 2건, 미국에서 1건 진행하였다. Vonoprazan 일본 첫번째 3상 임상시험은 NERD 환자 827명을 대상으로 시험약 10 mg, 20 mg의 유효성 및 안전성을 평가하기 위해 위약을 대조약으로 설정하여 3상 임상시험을 실시하였고, 4주동안 가슴쓰림이 완전히 소실된 날의 비율은 Full Analy",
+        "이중눈가림 유지를 위하여 무작위배정 시 무작위배정번호와 임상시험용 의약품 번호를 사용하여 시험대상자가 무작위배정번호만으로 구별되도록 하고, 각 군별로 무작위배정 목록 및 임상시험용 의약품 포장 목록과 무작위배정된 임상시험용 의약품에 대한 정보는 중간분석 시점과 임상시험 종료 후 눈가림 해제 절차를 통해 공개된다. 중대한 이상사례 등 응급상황의 발생으로 인하",
+        "임상시험 진행기간 동안 만일 시험대상자에게 안전을 위협하는 응급상황이 발생하였고 어떠한 임상시험용 의약품이 투여되었는지 아는 것이 의학적으로 필요한 경우에 한해, 해당 시험대상자의 임상시험용 의약품 배정 코드의 눈가림을 해제할 수 있다. 시험자는 시험대상자의 임상시험용 의약품 배정 코드의 눈가림을 해제하기 전에 투여된 임상시험용 의약품에 대한 정보가 시험대"
+      ]
+    },
+    "선정기준": {
+      "english": "inclusion criteria",
+      "count": 5,
+      "contexts": [
+        "3.2\t선정기준\t33",
+        "선정기준",
+        "선정기준에 적합하고 제외기준에 해당하지 않는 시험대상자에 한하여 무작위배정 번호 (randomization number)를 부여하고, 시험군1 (DWP14012 20 mg 투여군), 시험군2 (DWP14012 40 mg 투여군) 또는 대조군(위약 투여군)군에 1:1:1의 비율로 중앙 무작위배정을 실시한다."
+      ]
+    },
+    "제외기준": {
+      "english": "exclusion criteria",
+      "count": 21,
+      "contexts": [
+        "3.3\t제외기준\t33",
+        "8.2.9\t선정/제외기준 확인\t59",
+        "제외기준"
+      ]
+    },
+    "평가변수": {
+      "english": "endpoint",
+      "count": 22,
+      "contexts": [
+        "4.3.4\t유효성 평가변수 설정의 근거\t42",
+        "일차 유효성 평가변수인 8 주까지 점막 결손이 완전 치유된 시험대상자 비율은 DWP14012 40 mg군 99.07%, Esomeprazole 40 mg군 99.10%로, Esomeprazole 40 mg 대비 DWP14012 40 mg의 비열등성을 입증하였다.",
+        "이차 유효성 평가변수인 4주 시점에 점막 결손이 완전 치유된 시험대상자 비율은 DWP14012 40 mg군 90.29%, Esomeprazole 40 mg군 88.46%로, 두 군에서 유사하였다."
+      ]
+    },
+    "일차 평가변수": {
+      "english": "primary endpoint",
+      "count": 2,
+      "contexts": [
+        "위식도역류질환의 주증상 중 가슴쓰림을 본 임상시험의 일차 평가변수로 설정한 근거는 DWP14012와 같은 계열의 P-CAB 중 Tegoprazan 및 Vonoprazan의 NERD를 대상질환으로 실시한 허가용 임상시험을 참고하였다.",
+        "또한, Tegoprazan은 현재 미국에서 ‘가슴쓰림이 없는 날(24시간)의 비율(percentage of 24-hour heartburn-free days)’을 일차 평가변수로한 3상 임상시험을 진행 중이다.[ClinicalTrials.gov Identifier: NCT05587322.]"
+      ]
+    },
+    "유효성": {
+      "english": "efficacy",
+      "count": 78,
+      "contexts": [
+        "4.3.4\t유효성 평가변수 설정의 근거\t42",
+        "8.3\t유효성 평가\t60",
+        "8.3.1\t유효성 평가 변수\t60"
+      ]
+    },
+    "안전성": {
+      "english": "safety",
+      "count": 60,
+      "contexts": [
+        "4.3.6\t안전성 추적기간 설정의 근거\t45",
+        "8.5\t안전성 평가\t63",
+        "8.5.1\t안전성 평가 변수\t63"
+      ]
+    },
+    "스크리닝": {
+      "english": "screening",
+      "count": 31,
+      "contexts": [
+        "8.2.1\t서면 동의 및 스크리닝 번호 부여\t57",
+        "시험대상자별 시험기간: 스크리닝 및 Safety F/U을 포함하여 최대 7주",
+        "NERD 환자를 대상으로 한 P-CAB 제제의 유사 임상시험인 Tegoprazan의 국내 3상 임상시험에서 스크리닝 기간 동안 중증도가 보통(Moderate) 이상의 가슴쓰림을 경험한 환자를 대상으로 소그룹 분석을 실시하였다.[Kim SH, et al., 2021] 4주 동안 가슴쓰림이 완전히 소실된 날의 비율에 대하여 FAS를 이용한 전체 분석 시 50 "
+      ]
+    },
+    "기저치": {
+      "english": "baseline",
+      "count": 2,
+      "contexts": [
+        "연속형 변수 중 3)은 각 시점 및 베이스라인 대비 각 시점의 변화량에 대해 투여군별로 기술통계량(평균, 표준편차, 중앙값, 최소값, 최대값)을 제시한다. 베이스라인 대비 2주, 4주 투여 후 측정 변수 변화량의 대조군 대비 시험군1, 대조군 대비 시험군2 투여군 간 비교는 기저치를 공변량으로 하는 ANCOVA (analysis of covariance) ",
+        "범주형 변수인 1)은 시험대상자 수와 비율(%) 및 이에 대한 양측 95% 신뢰구간을 투여군별로 제시한다. 대조군 대비 시험군1, 대조군 대비 시험군2 투여군 간 비교는 Chi-square test 또는 Fisher’s exact test 로 검정한다.\n\n연속형 변수 2)는 투여군별로 기술통계량(평균, 표준편차, 중앙값, 최소값, 최대값)을 제시한다. 대조"
+      ]
+    },
+    "방문": {
+      "english": "visit",
+      "count": 76,
+      "contexts": [
+        "8.1\t방문 일정\t57",
+        "다음의 약물을 투여하였거나 종료방문(EOT)까지 지속적인 투여가 필요한 자",
+        "개별 시험대상자의 예정된 투여 및 모든 방문 절차가 완료되면 해당 시험대상자의 임상시험이 종료된다. 단, 중도탈락한 시험대상자는 Visit 4 (End of treatment, EOT)에 해당하는 마지막 방문 종료 시 임상시험을 종료한 것으로 간주하고, 최종 방문 시점에 시험대상자에게 이상사례가 새롭게 발생하거나 진행 중인 이상사례가 해결되지 않은 경우에는"
+      ]
+    },
+    "추적관찰": {
+      "english": "follow-up",
+      "count": 15,
+      "contexts": [
+        "개별 시험대상자의 예정된 투여 및 모든 방문 절차가 완료되면 해당 시험대상자의 임상시험이 종료된다. 단, 중도탈락한 시험대상자는 Visit 4 (End of treatment, EOT)에 해당하는 마지막 방문 종료 시 임상시험을 종료한 것으로 간주하고, 최종 방문 시점에 시험대상자에게 이상사례가 새롭게 발생하거나 진행 중인 이상사례가 해결되지 않은 경우에는",
+        "이상사례로 중도탈락하는 경우 가능한 회복(또는 시험자가 정상화되었다고 판단)될 때까지, 마지막 시험대상자의 마지막 방문 완료시까지, 혹은 더 이상의 추적관찰이 의미 없다고 판단할 수 있을 때까지 추적관찰한다. 탈락한 시험대상자는 재참여가 불가능하다.",
+        "본 임상시험에서는 치료 종료 후 1주 동안의 안전성 추적기간을 설정하였다. NERD 환자를 대상으로 한 P-CAB 제제의 유사 임상시험들의 투여기간을 살펴보았을 때, Vonoprazan의 경우 일본에서 실시한 첫번째 3상 임상시험에서 치료기간 종료 후 1주 동안의 추적기간 동안 위약을 투여하였으며, 두번째 3상 임상시험에서는 추적기간을 설정하지 않았다. T"
+      ]
+    },
+    "중도탈락": {
+      "english": "discontinuation",
+      "count": 27,
+      "contexts": [
+        "3.5\t중도탈락 기준\t37",
+        "(군당 최소 시험대상자 수 86명, 중도탈락률 20% 포함하여 군당 108명)",
+        "개별 시험대상자의 예정된 투여 및 모든 방문 절차가 완료되면 해당 시험대상자의 임상시험이 종료된다. 단, 중도탈락한 시험대상자는 Visit 4 (End of treatment, EOT)에 해당하는 마지막 방문 종료 시 임상시험을 종료한 것으로 간주하고, 최종 방문 시점에 시험대상자에게 이상사례가 새롭게 발생하거나 진행 중인 이상사례가 해결되지 않은 경우에는"
+      ]
+    },
+    "철회": {
+      "english": "withdrawal",
+      "count": 3,
+      "contexts": [
+        "시험대상자 또는 시험대상자 대리인의 동의 철회(Withdrawal by Subject (or his/her representative))",
+        "여성 시험대상자 또는 남성 시험대상자의 배우자(또는 파트너)가 임상시험 중 임신한 경우, 시험자는 임신 사실을 인지한 시점으로부터 24시간 이내에 임신 최초보고서를 작성하여 의뢰자 PV팀(pvsafety@clinical-trials.local)에게 보고하고, 출산 후 7일까지 추적 관찰해야 한다. 시험자는 시험대상자가 동의철회를 하거나 임상시험을 종료하더라도 모든 임신",
+        "시험대상자에게는 불이익이나 시험대상자가 원래 받기로 한 이익의 손실 없이 언제든 참여에 대한 동의를 철회할 자유가 있다는 것을 강조해야 한다."
+      ]
+    },
+    "동의철회": {
+      "english": "withdrawal of consent",
+      "count": 1,
+      "contexts": [
+        "여성 시험대상자 또는 남성 시험대상자의 배우자(또는 파트너)가 임상시험 중 임신한 경우, 시험자는 임신 사실을 인지한 시점으로부터 24시간 이내에 임신 최초보고서를 작성하여 의뢰자 PV팀(pvsafety@clinical-trials.local)에게 보고하고, 출산 후 7일까지 추적 관찰해야 한다. 시험자는 시험대상자가 동의철회를 하거나 임상시험을 종료하더라도 모든 임신"
+      ]
+    },
+    "임상시험 계획서": {
+      "english": "protocol",
+      "count": 26,
+      "contexts": [
+        "임상시험 계획서",
+        "본인은 본 임상시험 계획서를 읽고 검토하였고, 본 임상시험 계획서가 임상시험을 진행하는 데에 있어 필요한 모든 정보를 포함하고 있음을 이해하였으며 이에 동의합니다. 본인은 계획된 일정 내에 본 임상시험이 완료될 수 있도록 이에 합당한 노력을 기울일 것입니다. 본인은 본 임상시험을 헬싱키 선언, International council for harmonisa",
+        "[임상시험 계획서 제·개정 이력]"
+      ]
+    },
+    "증례기록서": {
+      "english": "case report form",
+      "count": 5,
+      "contexts": [
+        "임상시험 중도탈락 시점까지 수집한 모든 정보를 탈락 사유와 함께 근거문서(source document)와 해당하는 전자 증례기록서(Electronic case report form, e-CRF)에 기록한다. 시험자가 인지하지 못한 이상사례 발생의 누락을 방지하기 위해 중도탈락 방문을 거부하는 시험대상자에 대해서는 전화, 또는 이메일 등의 방법을 동원하여 시",
+        "임상시험 계획서에서 요구하는 자료는 모두 e-CRF를 통하여 수집하고 증례기록서에 기록된 모든 정보는 근거문서와 일치해야 한다.",
+        "e-CRF 상의 자료 수집은 증례기록서 작성 지침에 설명된 지시사항을 준수해야 한다. 시험자에게는 근거문서 상의 모든 임상 자료를 e-CRF를 통해 수집하고 보고할 궁극적인 책임이 있다. e-CRF를 작성한 후 시험자는 각각의 e-CRF에 서명함으로써 e-CRF에 기록된 정보가 사실임을 보증한다. 시험책임자는 모든 경우에 있어서 e-CRF에 기록된 모든 자"
+      ]
+    },
+    "동의서": {
+      "english": "informed consent",
+      "count": 17,
+      "contexts": [
+        "별첨 3. 시험대상자 설명문 및 시험대상자 동의서",
+        "별첨 4. 임신 정보 공유 동의 설명문 및 동의서",
+        "별첨 5. 취약한 환경의 시험대상자 동의 설명문 및 동의서"
+      ]
+    },
+    "시험대상자 동의서": {
+      "english": "informed consent form",
+      "count": 7,
+      "contexts": [
+        "별첨 3. 시험대상자 설명문 및 시험대상자 동의서",
+        "본 임상시험과 관련된 검사 및 절차를 수행하기 전, ‘시험대상자 설명문’을 통해 본 임상시험과 관련된 모든 정보를 시험대상자에게 서면 제공하고 시험대상자(및/또는 시험대상자 대리인)의 성명, 서명 및 서명일자가 포함된 ‘시험대상자 동의서’를 서면 동의받는다.",
+        "시험대상자 동의서 서명 전에 계획된 입원 또는 입원기간의 연장 (예: 성형수술)"
+      ]
+    },
+    "설명문": {
+      "english": "subject information sheet",
+      "count": 5,
+      "contexts": [
+        "별첨 3. 시험대상자 설명문 및 시험대상자 동의서",
+        "별첨 4. 임신 정보 공유 동의 설명문 및 동의서",
+        "별첨 5. 취약한 환경의 시험대상자 동의 설명문 및 동의서"
+      ]
+    },
+    "의약품 임상시험 관리기준": {
+      "english": "Good Clinical Practice",
+      "count": 3,
+      "contexts": [
+        "임상시험 실시기관 또는 시험자에 의한 의약품 임상시험 관리기준(good clinical practice, GCP), 임상시험 계획서 또는 계약의 위반 정도가 임상시험 지속에 문제를 야기하는 경우",
+        "본 계획서에 규정된 절차는 의뢰자 및 시험자가 이 임상시험을 수행, 평가하고 결과를 기록하는데 있어서 International council for harmonisation of technical requirements for pharmaceuticals for human use-good clinical practice (ICH-GCP), 국내 의약품 임상",
+        "의뢰자는 임상시험에 앞서 사전방문을 실시하며 개시 방문 후 시험대상자를 모집한다. 임상시험이 의약품 임상시험 관리기준에 따라 수행되고 임상시험 자료가 국내·외에서 등록 시 인정될 수 있도록 하기 위해서 임상시험 의뢰자 측에서 모니터링 및 점검을 실시할 수 있다. 시험책임자는 본 계획서에 서명함으로써 점검을 실시함에 동의한 것이다."
+      ]
+    },
+    "임상시험 관리기준": {
+      "english": "Good Clinical Practice",
+      "count": 5,
+      "contexts": [
+        "11.1\t임상시험 관리기준 및 헬싱키 선언\t83",
+        "임상시험 실시기관 또는 시험자에 의한 의약품 임상시험 관리기준(good clinical practice, GCP), 임상시험 계획서 또는 계약의 위반 정도가 임상시험 지속에 문제를 야기하는 경우",
+        "임상시험 관리기준 및 헬싱키 선언"
+      ]
+    },
+    "GCP": {
+      "english": "GCP",
+      "count": 12,
+      "contexts": [
+        "본인은 본 임상시험 계획서를 읽고 검토하였고, 본 임상시험 계획서가 임상시험을 진행하는 데에 있어 필요한 모든 정보를 포함하고 있음을 이해하였으며 이에 동의합니다. 본인은 계획된 일정 내에 본 임상시험이 완료될 수 있도록 이에 합당한 노력을 기울일 것입니다. 본인은 본 임상시험을 헬싱키 선언, International council for harmonisa",
+        "임상시험 실시기관 또는 시험자에 의한 의약품 임상시험 관리기준(good clinical practice, GCP), 임상시험 계획서 또는 계약의 위반 정도가 임상시험 지속에 문제를 야기하는 경우",
+        "의뢰자는 임상시험 책임자 또는 임상시험 담당자로부터 중대하고 예상하지 못한 모든 약물이상반응을 보고받거나 알게 된 날로부터 15 일 이내에 기타 관련된 시험자, 심사위원회(시험책임자가 심사위원회에 보고하지 않았거나 보고한 사항을 변경할 필요가 있는 경우만 해당한다) 및 식품의약품안전처장에게 보고하여야 한다. 사망을 초래하거나 생명을 위협하는 경우에는 의뢰자"
+      ]
+    },
+    "ICH": {
+      "english": "ICH",
+      "count": 4,
+      "contexts": [
+        "본인은 본 임상시험 계획서를 읽고 검토하였고, 본 임상시험 계획서가 임상시험을 진행하는 데에 있어 필요한 모든 정보를 포함하고 있음을 이해하였으며 이에 동의합니다. 본인은 계획된 일정 내에 본 임상시험이 완료될 수 있도록 이에 합당한 노력을 기울일 것입니다. 본인은 본 임상시험을 헬싱키 선언, International council for harmonisa",
+        "의뢰자의 안전성 보고 담당자는 예상하지 못한 중대한 약물이상반응(Suspected unexpected serious adverse reaction, SUSAR) 평가 및 보고 시 ICH E2A 가이드라인에 따라 임상시험 수행이나 결과에 영향을 미치지 않는 범위 내에서 필요한 경우 눈가림 해제를 실시하여 의심되는 약물의 종류를 확인하고 SUSAR 보고서에 이",
+        "본 계획서에 규정된 절차는 의뢰자 및 시험자가 이 임상시험을 수행, 평가하고 결과를 기록하는데 있어서 International council for harmonisation of technical requirements for pharmaceuticals for human use-good clinical practice (ICH-GCP), 국내 의약품 임상"
+      ]
+    },
+    "임상시험심사위원회": {
+      "english": "Institutional Review Board",
+      "count": 3,
+      "contexts": [
+        "임상시험 기간: 임상시험심사위원회(Institutional review board, IRB) 승인일로부터 약 30개월",
+        "기밀유지: 본 임상시험 계획서에 포함된 모든 정보는 임상시험책임자 및 임상시험 담당자, 임상시험심사위원회, 규제기관을 위해 제공된 것으로서, 의뢰자의 사전 서면 동의 없이 제3자에게 공개될 수 없습니다.",
+        "시험대상자별 시험기간: 스크리닝 및 Safety follow-up (F/U)을 포함하여 최대 7주\n임상시험 기간: 임상시험심사위원회(Institutional review board, IRB) 승인일로부터 약 30개월\n(단, 시험대상자 등록 속도에 따라 조정될 수 있음)"
+      ]
+    },
+    "IRB": {
+      "english": "IRB",
+      "count": 20,
+      "contexts": [
+        "임상시험 기간: 임상시험심사위원회(Institutional review board, IRB) 승인일로부터 약 30개월",
+        "시험책임자 및 IRB는 임상시험 도중에 관찰 및 수집되는 정보에 비추어 시험대상자 개인과 사회가 얻을 수 있는 이익이 그 위험과 불편을 상회하지 않거나 이를 정당화할 수 없다고 판단되는 경우 임상시험을 중단시킬 수 있다. IRB는 실시 중인 임상시험이 IRB의 요구나 결정사항과 다르게 실시되거나 시험대상자에게 예상하지 못한 중대한 위험이 발생하였을 때에는 ",
+        "시험책임자가 의뢰자와 사전합의 없이 임상시험을 조기중단하거나 중지하였을 경우 시험책임자는 이 사실을 의뢰자 및 IRB에 즉시 알리고, 조기중단 및 중지에 대한 상세한 사유서를 제출한다."
+      ]
+    },
+    "통계분석": {
+      "english": "statistical analysis",
+      "count": 6,
+      "contexts": [
+        "9.2\t통계분석 방법\t73",
+        "(시험대상자 등록기간(약 24개월), 시험대상자별 시험기간, 자료 관리/통계분석 및 결과보고서 작성 기간 포함)",
+        "통계분석 방법"
+      ]
+    },
+    "중간분석": {
+      "english": "interim analysis",
+      "count": 22,
+      "contexts": [
+        "4.5.4\t중간분석과 임상시험 종료 후 이중 눈가림 해제\t47",
+        "9.2.7\t중간분석\t77",
+        "이중눈가림 유지를 위하여 무작위배정 시 무작위배정번호와 임상시험용 의약품 번호를 사용하여 시험대상자가 무작위배정번호만으로 구별되도록 하고, 각 군별로 무작위배정 목록 및 임상시험용 의약품 포장 목록과 무작위배정된 임상시험용 의약품에 대한 정보는 중간분석 시점과 임상시험 종료 후 눈가림 해제 절차를 통해 공개된다. 중대한 이상사례 등 응급상황의 발생으로 인하"
+      ]
+    },
+    "최종분석": {
+      "english": "final analysis",
+      "count": 3,
+      "contexts": [
+        "중간분석 시점에 관측된 자료에 대하여 IDMC를 통해 임상시험의 안전성과 무익성에 대한 평가를 수행하며, 유효성을 탐색하고 점검한다. 중간분석은 무작위배정 코드 생성을 담당한 통계학자와 최종분석을 수행할 임상시험수탁기관(통계학자)과는 별도로 지정된 독립 기관(통계학자)에 의해 수행된다. 중간분석을 위한 눈가림해제 절차에 대해서는 헌장(Charter)에 상세",
+        "[임상시험 종료 후 최종분석에서의 판정기준]",
+        "목표 시험대상자의 약 50%(무작위배정 기준, 완료 및 중도탈락 포함)가 임상시험을 종료하는 시점에 중간분석 1회와 임상시험이 종료된 후 최종분석을 실시한다."
+      ]
+    },
+    "분석군": {
+      "english": "analysis set",
+      "count": 5,
+      "contexts": [
+        "9.1\t분석군\t73",
+        "NERD 환자를 대상으로 한 P-CAB 제제의 유사 임상시험인 Tegoprazan의 국내 3상 임상시험에서 스크리닝 기간 동안 중증도가 보통(Moderate) 이상의 가슴쓰림을 경험한 환자를 대상으로 소그룹 분석을 실시하였다.[Kim SH, et al., 2021] 4주 동안 가슴쓰림이 완전히 소실된 날의 비율에 대하여 FAS를 이용한 전체 분석 시 50 ",
+        "분석군"
+      ]
+    },
+    "PP": {
+      "english": "per-protocol",
+      "count": 26,
+      "contexts": [
+        "GERD의 전형적 증상은 가슴쓰림(heartburn)이나 산 역류(acid regurgitation)이며, 구토, 위장관출혈, 빈혈, 체중감소, 삼킴곤란 혹은 흉통 등의 경고 증상이 없는 것이 특징이다. [식품의약품안전평가원., 2015] GERD의 진단에는 GerdQ (Gastroesophageal reflux disease Questionnaire) 및",
+        "식품의약품안전처의 의약품 안전사용 매뉴얼에서 제시하는 GERD의 치료는 생활습관 개선, 약물치료, 수술적 치료, 내시경적 치료 등이 있으며, 질환의 중증도와 환자 개개인의 특성에 따라 치료법이 결정될 수 있다. GERD 치료 시 대부분의 경우 약물치료를 가장 우선적으로 받게 되며, 약물치료로는 위산분비억제제, 제산제, 점막보호제 등이 있다.[식품의약품안전처",
+        "이러한 PPI 계열 약물의 단점 및 시장의 미충족 요구를 해결할 대안으로 가역적 억제기전을 갖는 칼륨 경쟁적 위산분비 억제제(Potassium competitive acid blocker, P-CAB)가 있으며, 2007년 1월 국내에 발매된 유한양행의 레바프라잔(Revaprazan)이 세계 최초로 개발된 P-CAB 계열의 항궤양제이다. 그러나 레바프라잔("
+      ]
+    },
+    "치료 종료": {
+      "english": "end of treatment",
+      "count": 2,
+      "contexts": [
+        "본 임상시험에서는 치료 종료 후 1주 동안의 안전성 추적기간을 설정하였다. NERD 환자를 대상으로 한 P-CAB 제제의 유사 임상시험들의 투여기간을 살펴보았을 때, Vonoprazan의 경우 일본에서 실시한 첫번째 3상 임상시험에서 치료기간 종료 후 1주 동안의 추적기간 동안 위약을 투여하였으며, 두번째 3상 임상시험에서는 추적기간을 설정하지 않았다. T"
+      ]
+    },
+    "임상시험 종료": {
+      "english": "end of study",
+      "count": 12,
+      "contexts": [
+        "3.4\t개별 시험대상자의 임상시험 종료\t37",
+        "4.5.4\t중간분석과 임상시험 종료 후 이중 눈가림 해제\t47",
+        "5\t임상시험 종료 및 조기중단 기준\t48"
+      ]
+    },
+    "EOT": {
+      "english": "EOT",
+      "count": 28,
+      "contexts": [
+        "Abbreviations: F/U = follow-up, EOT = end of treatment, EOS = end of study, D = day, W = week, H.pylori = Helicobacter pylori, PAGI-QOL = patient assessment of upper gastrointestinal disorders-quality",
+        "다음의 약물을 투여하였거나 종료방문(EOT)까지 지속적인 투여가 필요한 자",
+        "Abbreviations: FD = functional dyspepsia, FH = functional heartburn, RH = reflux hypersensitivity, IBS = irritable bowel syndrome, IBD = inflammatory bowel disease, ALT = alanine transaminase, AST = a"
+      ]
+    },
+    "EOS": {
+      "english": "EOS",
+      "count": 6,
+      "contexts": [
+        "Abbreviations: F/U = follow-up, EOT = end of treatment, EOS = end of study, D = day, W = week, H.pylori = Helicobacter pylori, PAGI-QOL = patient assessment of upper gastrointestinal disorders-quality",
+        "Abbreviation: FU = follow-up, V = visit, D = day, W = week, EOT = end of treatment, EOS = end of study",
+        "본 임상시험에서 개별 이상사례는 동의서 취득 이후부터 임상시험 종료(EOS)까지 발생한 모든 이상사례를 수집하며, 여성 시험대상자 또는 남성 시험대상자의 배우자(또는 파트너)의 임신을 임상시험용 의약품과의 인과관계와 관계없이 수집한다. 동의서 서명 당시에 병력은 이상사례로 기록되지 않으며, 임상시험용 의약품 투여 이후 기저 상태와 비교하여 기존 질환의 양상"
+      ]
+    }
+  },
+  "style_analysis": {
+    "modal_verbs": {
+      "must": 20,
+      "shall": 2,
+      "should": 137,
+      "will": 295,
+      "may": 71,
+      "can": 16,
+      "could": 1
+    },
+    "passive_voice_count": 356,
+    "formal_expressions": {
+      "prior to": 55,
+      "following": 32,
+      "in accordance with": 13,
+      "pursuant to": 0,
+      "thereof": 0,
+      "herein": 0
+    },
+    "total_words": 24905
+  },
+  "glossary": [
+    {
+      "Korean": "EOS",
+      "English": "EOS",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "EOT",
+      "English": "EOT",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "GCP",
+      "English": "GCP",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "ICH",
+      "English": "ICH",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "IRB",
+      "English": "IRB",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "ITT",
+      "English": "intention-to-treat",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "PP",
+      "English": "per-protocol",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "가족력",
+      "English": "family history",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "가짜 대조약",
+      "English": "sham comparator",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "가짜 시술",
+      "English": "sham procedure",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "감시 기간",
+      "English": "sentinel duration",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "개발 안전성 업데이트 보고서",
+      "English": "Development Safety Update Report|DSUR",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "개요",
+      "English": "synopsis|overview",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "개요도|도식",
+      "English": "schema",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "개정",
+      "English": "revision|change|amendment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "개정 번호",
+      "English": "amendment number",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "개정 범위",
+      "English": "amendment scope",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "검정시험|밸리데이션 시험",
+      "English": "validation|validation study",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "검체",
+      "English": "sample|specimen",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "검체 채취",
+      "English": "sampling|sample collection",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "검체분석",
+      "English": "sample analysis",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "결과 평가자",
+      "English": "outcomes assessor",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "결과보고서",
+      "English": "clinical study report|study report|clinical trial report",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "결측값",
+      "English": "missing data",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "경구 투약|경구 투여",
+      "English": "oral administration",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "계획서|시험계획서|임상시험 계획서|프로토콜",
+      "English": "protocol|study protocol",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "고정 용량",
+      "English": "fixed dose",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "공개",
+      "English": "open-label",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "공개|공개 라벨",
+      "English": "open-label",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "공동연구자|공동시험자|공동 연구자",
+      "English": "co-investigator|sub-investigator",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "과민증",
+      "English": "hypersensitivity",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "관심 모수",
+      "English": "estimand",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "교차 설계",
+      "English": "crossover design|cross-over design",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "교호작용|상호작용",
+      "English": "interaction",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "구성",
+      "English": "composition|configuration",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "구제 요법",
+      "English": "rescue therapy|salvage therapy",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "국가필수의약품",
+      "English": "national essential drug",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "국소적 이상반응|국소 이상반응",
+      "English": "local adverse event",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "국제의과학기구협의회",
+      "English": "Council for International Organisations of Medical Sciences|CIOMS",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "국제의약품규제조화위원회",
+      "English": "International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use|ICH",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "군",
+      "English": "arm|group",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "규제 기관",
+      "English": "regulatory agency",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "금기",
+      "English": "contraindicate|contraindication",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "급성 이상반응",
+      "English": "acute adverse event",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "기저선",
+      "English": "baseline",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "기저선|기저시점|베이스라인|기저치",
+      "English": "baseline",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "기저시점",
+      "English": "baseline",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "기저치",
+      "English": "baseline",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "기저치 검사",
+      "English": "baseline test",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "기준일탈",
+      "English": "out of specification",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "긴급 동의 과정",
+      "English": "emergency consent process",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "내약성",
+      "English": "tolerability",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "눈가림",
+      "English": "blinding",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "눈가림",
+      "English": "blinding|masking",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "눈가림 해제",
+      "English": "unblinding",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "다기관",
+      "English": "multicenter|multi-center",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "다변량",
+      "English": "multivariate",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "단독 투여|단독요법",
+      "English": "monotherapy",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "단백뇨",
+      "English": "proteinuria",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "단변량",
+      "English": "univariate",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "단일 기관",
+      "English": "single-center",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "단일눈가림",
+      "English": "single-blind",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "단회 단독투여|단독투여|단회 투여",
+      "English": "single dose",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "담당의사",
+      "English": "treating physician|study doctor",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "대상 환자",
+      "English": "target patient",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "대상자|시험대상자",
+      "English": "subject",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "대조|조절|관리",
+      "English": "control",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "대조군",
+      "English": "control group|reference group|comparator group|control arm|reference arm|comparator arm",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "대조약",
+      "English": "control drug|reference drug|comparator",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "대조약",
+      "English": "comparator",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "독립윤리위원회",
+      "English": "Independent Ethics Committee|IEC",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "동등성",
+      "English": "equivalence",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "동등성 평가",
+      "English": "comparability evaluation|equivalence assessment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "동의",
+      "English": "consent",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "동의서",
+      "English": "informed consent",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "동의서|서면동의서|시험대상자 동의서",
+      "English": "informed consent form|ICF|consent form",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "동의철회",
+      "English": "withdrawal of consent",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "동의철회",
+      "English": "withdrawal of consent|consent withdrawal",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "동정적 사용승인",
+      "English": "expanded access",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "등록",
+      "English": "enrollment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "디지털 보건의료 기술",
+      "English": "Digital Health Technology|DHT",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "면역원성",
+      "English": "immunogenicity",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "면역원성 평가",
+      "English": "immunogenicity assessment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "면역혈청검사|면역혈청학",
+      "English": "immunoserology",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "모니터요원|임상시험 모니터요원|임상시험 담당자|임상 시험 관리자",
+      "English": "clinical research associate|CRA",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "모집",
+      "English": "recruitment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "모집단|임상시험 모집단",
+      "English": "population|trial population|study population",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "목적",
+      "English": "objective",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "무작위",
+      "English": "randomized",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "무작위 배정",
+      "English": "randomization",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "무작위배정",
+      "English": "randomization",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "문서 변경 이력|문서 이력",
+      "English": "document history",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "민감도 분석|민감성 분석",
+      "English": "sensitivity analysis",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "발현율|발생률",
+      "English": "incidence",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "방문",
+      "English": "visit",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "방문일",
+      "English": "date of visit|visit day",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "방법서|표준작업지침서",
+      "English": "standard operating procedure|SOP",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "방해인자|방해요인",
+      "English": "interference factor",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "배치",
+      "English": "batch",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "밸리데이션 계획서",
+      "English": "validation protocol",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "밸리데이션 보고서",
+      "English": "validation report",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "변경계획서|임상시험 변경계획서",
+      "English": "amendment|protocol amendment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "변경사유",
+      "English": "change justification",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "변경신청번호",
+      "English": "change application number",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "변경영향평가",
+      "English": "change impact assessment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "병력",
+      "English": "case history|medical history",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "병리기전|발병기전",
+      "English": "pathogenesis",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "병발 사례",
+      "English": "intercurrent event",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "병용약물|병용약제|혼합병용약제",
+      "English": "concomitant drug|concomitant medication",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "병용요법",
+      "English": "concomitant treatment|concomitant therapy",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "보고 그룹",
+      "English": "reporting group",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "보관|유지",
+      "English": "retention",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "보상",
+      "English": "compensation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "보체 검사",
+      "English": "complement test",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "보호자|간병인",
+      "English": "care provider",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "복약|치료제|처치|투여",
+      "English": "treatment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "복합제|병용 약물|병용약",
+      "English": "combination drug",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "부작용",
+      "English": "side effect",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "분석계획서",
+      "English": "analysis protocol",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "분석군",
+      "English": "analysis group|analysis set",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "분석군",
+      "English": "analysis set",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "분석증명서|분석인증서",
+      "English": "certificate of analysis|COA",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "비뚤림|편향",
+      "English": "bias",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "비밀보장|기밀유지|기밀성|기밀",
+      "English": "confidentiality",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "비약리학적 치료",
+      "English": "non-pharmacological treatment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "비열등성",
+      "English": "non-inferiority",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "비임상시험용 의약품",
+      "English": "non-investigational medicinal product|NIMP",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "사례군연구|환자군연구",
+      "English": "case series study",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "사용성적조사|시판후조사",
+      "English": "post-marketing surveillance|PMS",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "사전 선별검사|예비 선별심사|사전 스크리닝",
+      "English": "pre-screening",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "산후 추척관찰",
+      "English": "postpartum follow-up|post-partum follow-up",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "삶의 질",
+      "English": "quality of life|QOL",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "상급종합병원",
+      "English": "tertiary hospital",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "상대표준편차",
+      "English": "relative standard deviation|RSD",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "상응하는 위약",
+      "English": "matching placebo",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "상표명",
+      "English": "proprietary name",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "새로운 첨가제",
+      "English": "novel excipient|novel additive",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "생물학적 동등성",
+      "English": "bioequivalence",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "생체표지자|생체지표|바이오마커",
+      "English": "biomarker",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "생활습관 고려사항",
+      "English": "lifestyle considerations",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "서면 동의|서면 동의서",
+      "English": "written consent|written informed consent",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "선정/제외기준|선정 제외기준",
+      "English": "inclusion/exclusion criteria",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "선정기준",
+      "English": "inclusion criteria",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "선천적",
+      "English": "congenital",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "선행약물",
+      "English": "prior medication",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "설명문",
+      "English": "subject information sheet",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "설명문|설명서",
+      "English": "information sheet",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "설문",
+      "English": "questionnaire",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "성상",
+      "English": "appearance",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "소실반감기",
+      "English": "elimination half-life",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "수집",
+      "English": "collect",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "순서군",
+      "English": "sequence group|sequence arm",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "스크리닝",
+      "English": "screening",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "스크리닝 검사",
+      "English": "screening test",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "스크리닝 방문",
+      "English": "screening visit",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "스크리닝 탈락|스크리닝 실패",
+      "English": "screen failure|screening failure",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "승인|허가",
+      "English": "approval",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시간-의존성",
+      "English": "time-dependency",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시약",
+      "English": "reagent",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시행일자|유효일자",
+      "English": "effective date",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험 기간|임상시험 기간",
+      "English": "study duration|trial duration|study period|trial period",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험 단계",
+      "English": "trial phase|study phase",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험 종료",
+      "English": "end of study|EOS|end of trial|EOT",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험 중재",
+      "English": "intervention|trial intervention|study intervention",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험|임상시험",
+      "English": "study|trial",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험군",
+      "English": "study group|test group|study arm|test arm",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험기관",
+      "English": "study site|trial site|test site|institution",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험기관명",
+      "English": "site name|institution name",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험대상자",
+      "English": "subject",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "시험대상자 동의 과정|시험대상자 동의 절차",
+      "English": "informed consent process",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험대상자 동의서",
+      "English": "informed consent document",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험대상자 동의서",
+      "English": "informed consent form",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "시험대상자 배정",
+      "English": "subject allocation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험대상자 설명서|시험대상자 설명문",
+      "English": "subject information sheet",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험대상자 식별 코드",
+      "English": "subject identification code",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험성적서",
+      "English": "certificate of analysis|COA|test report",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험약",
+      "English": "study drug|test drug|trial drug",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험약",
+      "English": "investigational product",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "시험의 이론적 근거",
+      "English": "rationale|study rationale",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험자",
+      "English": "investigator",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "시험자|시험실시자|시험자",
+      "English": "investigator",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "시험책임자",
+      "English": "principal investigator",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "시험책임자|책임연구자|임상시험책임자",
+      "English": "principal investigator|primary investigator|PI",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "식약처 고시",
+      "English": "MFDS notification",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "식약처 보완",
+      "English": "MFDS supplementation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "식품의약품안전처",
+      "English": "Ministry of Food and Drug Safety|MFDS",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "신뢰구간",
+      "English": "confidence interval|CI",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "신뢰성보증|품질 보증",
+      "English": "quality assurance|QA",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "신속심의",
+      "English": "expedited review",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "신약",
+      "English": "new drug",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "신체검사|신체검진",
+      "English": "physical examination",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "실시기관",
+      "English": "site|institution",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "실험적 조작",
+      "English": "experimental manipulation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "심전도|심전도 검사",
+      "English": "electrocardiogram|electrocardiography|ECG",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "안전성",
+      "English": "safety",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "안전성 분석",
+      "English": "safety analysis",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "안전성 업데이트 보고서",
+      "English": "Safety Update Report|SUR",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "안전성 자료",
+      "English": "safety data",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "안전성 정보",
+      "English": "safety information",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "안전성 평가",
+      "English": "safety assessment|safety evaluation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "안정성시험계획",
+      "English": "stability protocol",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "약동학",
+      "English": "pharmacokinetics|PK",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "약력학",
+      "English": "pharmacodynamics|PD",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "약물|의약품",
+      "English": "drug|medication|medicinal product",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "약물감시|의약품 감시",
+      "English": "pharmacovigilance|PV",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "약물이상반응",
+      "English": "adverse drug reaction",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "약물이상반응|이상약물반응",
+      "English": "adverse drug reaction|ADR",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "약칭",
+      "English": "short title",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "양측검정",
+      "English": "two-tailed test|two-sided test",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "연방 규정집",
+      "English": "Code of Federal Regulations|CFR",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "염색",
+      "English": "stain",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "예비연구",
+      "English": "pilot study",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "예상하지 못한 이상사례|예상하지 못한 이상반응",
+      "English": "unexpected adverse event",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "예상하지 못한 이상약물반응",
+      "English": "unexpected adverse drug reaction",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "예상하지 못한 중대한 약물이상반응",
+      "English": "suspected unexpected serious adverse reaction",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "예정일",
+      "English": "scheduled date",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "완전성 검사|무결성 시험",
+      "English": "integrity test",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "완화 전략",
+      "English": "mitigation strategy",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "외래방문",
+      "English": "outpatient visit",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "외부 연구자",
+      "English": "external researcher",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "외부 평가자",
+      "English": "external investigator",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용량 범위",
+      "English": "dose range",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용량 적정",
+      "English": "dose titration",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용량 조정",
+      "English": "dose modification|dose adjustment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용량 증량",
+      "English": "dose escalation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용량-의존성",
+      "English": "dose-dependency",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용량|투여용량",
+      "English": "dose",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용량증량위원회",
+      "English": "Dose Escalation Committee",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용출",
+      "English": "dissolution",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용출률|용출율",
+      "English": "dissolution rate",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "용출시험",
+      "English": "dissolution test",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "위약",
+      "English": "placebo",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "위해성관리계획",
+      "English": "risk management plan|RMP",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "위험/이익 평가",
+      "English": "risk/benefit assessment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "위험성 요약",
+      "English": "risk summary",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "유의성 있는 이상반응",
+      "English": "significant adverse event",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "유의수준",
+      "English": "significance level",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "유익성 요약",
+      "English": "benefit summary",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "유전자 재조합",
+      "English": "recombinant",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "유효성",
+      "English": "efficacy",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "유효성 분석",
+      "English": "efficacy analysis",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "유효성 자료",
+      "English": "efficacy data",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "유효성 평가",
+      "English": "efficacy assessment|efficacy evaluation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "윤리위원회",
+      "English": "ethics committee|EC",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "의뢰자",
+      "English": "sponsor",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "의뢰자 서명인",
+      "English": "sponsor signatory",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "의뢰자 이름",
+      "English": "sponsor name",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "의뢰자|의뢰인",
+      "English": "sponsor",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "의뢰자명",
+      "English": "name of sponsor",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "의료기기 제품 불만사항",
+      "English": "medical device product complaint",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "의약외품",
+      "English": "quasi-drug",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "의약품 임상시험 관리기준",
+      "English": "Korea Good Clinical Practice|KGCP",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "의약품 임상시험 관리기준",
+      "English": "Good Clinical Practice",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "의학 모니터요원",
+      "English": "medical monitor",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "이상반응",
+      "English": "adverse event",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "이상반응|이상사례",
+      "English": "adverse event|AE",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "이상사례",
+      "English": "adverse event",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "이중 위약",
+      "English": "double-dummy",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "이중눈가림",
+      "English": "double-blind",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "이차 목적",
+      "English": "secondary objective",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "이차 유효성",
+      "English": "secondary efficacy",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "이차 평가변수",
+      "English": "secondary endpoint",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "인과관계|인과성",
+      "English": "causal relationship|causality",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "인구학적 정보",
+      "English": "demographic data|demographic information|demographics",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "인구학적 정보 분석군",
+      "English": "demographic set",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "인증",
+      "English": "certification",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "일반의약품",
+      "English": "over-the-counter drug|OTC",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "일차 면역원성",
+      "English": "primary immunogenicity",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "일차 목적",
+      "English": "primary objective",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "일차 유효성",
+      "English": "primary efficacy",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "일차 평가변수",
+      "English": "primary endpoint",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "일탈|이탈|편차",
+      "English": "deviation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상 결과 평가",
+      "English": "clinical outcome assessment|COA",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상 실험실 평가",
+      "English": "clinical laboratory assessment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험",
+      "English": "clinical trial",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "임상시험",
+      "English": "clinical trial|trial|clinical study|study",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험 계획",
+      "English": "clinical study plan|study plan",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험 계획서",
+      "English": "protocol",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "임상시험 관리기준",
+      "English": "Good Clinical Practice",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "임상시험 관리기준에 관한 국제조화회의 지침",
+      "English": "International Council on Harmonisation Good Clinical Practice|ICH GCP",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험 디자인|임상시험 설계",
+      "English": "trial design|study design",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험 수탁기관",
+      "English": "contract research organization|CRO",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험 실시기관",
+      "English": "study institution|study site",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험 의뢰자",
+      "English": "sponsor",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "임상시험 조정자|시험 조정자",
+      "English": "coordinating investigator",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험 종료",
+      "English": "end of study",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "임상시험계획서 개요",
+      "English": "protocol synopsis",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험계획서 번호",
+      "English": "protocol number",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험계획서 요약",
+      "English": "protocol summary",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험계획서 위반",
+      "English": "protocol deviation|violation of protocol",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험계획서 템플릿",
+      "English": "protocol template",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험관리기준",
+      "English": "Good Clinical Practice|GCP",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험기관 시험자|시험기관 시험자",
+      "English": "clinical site investigator",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험담당자",
+      "English": "study staff|trial staff",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험수탁기관",
+      "English": "clinical research organization|CRO",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험심사위원회",
+      "English": "Institutional Review Board",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "임상시험심사위원회|의학연구윤리심의위원회|임상시험위원회",
+      "English": "Institutional Review Board|IRB",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험용 신약",
+      "English": "investigational new drug|IND",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험용 의료기기",
+      "English": "investigational device",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "임상시험용 의약품",
+      "English": "investigational product",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "임상시험용 의약품|임상시험용의약품",
+      "English": "investigational medicinal product|IMP|investigational product|IP",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험의 목적",
+      "English": "study objective|purpose of clinical trial",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험자 자료집",
+      "English": "Investigator's Brochure|IB",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상시험코디네이터",
+      "English": "clinical research coordinator|CRC",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상실험실|실험실",
+      "English": "clinical laboratory|laboratory",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상실험실검사|임상검사실검사|임상검사실 검사|실험실 검사|실험실적 검사|검사실검사",
+      "English": "clinical laboratory test|laboratory test",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임상연구",
+      "English": "clinical study",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "임상연구용 기기 면제",
+      "English": "investigational device exemption|IDE",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "임신 가능성|가임기",
+      "English": "childbearing potential",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "입원",
+      "English": "hospitalization|admission",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "입원기간",
+      "English": "hospitalization period",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "자금 조달 기관",
+      "English": "funding agency",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "자료 모니터링 위원회",
+      "English": "Data Monitoring Committee|DMC",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "자료 안전성 모니터링 위원회",
+      "English": "Data Safety Monitoring Board|DSMB",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "재투여",
+      "English": "rechallenge",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "적격성평가 계획서",
+      "English": "qualification protocol",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "적정",
+      "English": "titration",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "전문의약품",
+      "English": "prescription drug",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "전신적 이상반응|전신 이상반응",
+      "English": "systemic adverse event",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "전자 증례기록서",
+      "English": "electronic case report form|e-CRF|eCRF",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "전화방문",
+      "English": "telephone visit/phone visit",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "점검 기록",
+      "English": "audit trail",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "점검 보고서",
+      "English": "audit report",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "점검 확인서",
+      "English": "audit certificate",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "정기보고서",
+      "English": "periodic report",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "정량범위",
+      "English": "quantitation range",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "정량법|정량",
+      "English": "assay",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "제외기준",
+      "English": "exclusion criteria",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "제조기록서",
+      "English": "master batch record|MBR",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "제조번호|로트번호",
+      "English": "lot number|manufacturing number",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "제조일자",
+      "English": "manufacturing date",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "제출",
+      "English": "submission",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "제형|용량제제",
+      "English": "dosage form|dosage formulation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "조기종료",
+      "English": "early termination",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "조정 위원회",
+      "English": "coordinating committee",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "조제",
+      "English": "preparation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "조직병리학적 검사",
+      "English": "histopathology|histopathological examination",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "종료방문",
+      "English": "end of study visit|end of trial vist|close-out visit",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "종합병원",
+      "English": "general hospital",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "주사|주사제",
+      "English": "injection",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "주사부위",
+      "English": "injection site",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "주성분|활성 제약 성분|활성 의약품 성분",
+      "English": "active ingredient|active pharmaceutical ingredient|API",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "준비|도입|런-인",
+      "English": "run-in",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "준수",
+      "English": "compliance",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "준수 서약|준수 진술서",
+      "English": "statement of compliance",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중간 분석",
+      "English": "interim analysis",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중간분석",
+      "English": "interim analysis",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "중단",
+      "English": "discontinuation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중단 규칙",
+      "English": "stopping rule",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중대하지 않은 이상반응",
+      "English": "non-serious adverse event",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중대한 약물이상반응",
+      "English": "serious adverse drug reaction|SADR",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중대한 이상반응",
+      "English": "serious adverse event",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "중대한 이상반응|중대한 이상사례",
+      "English": "serious adverse event|SAE",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중도탈락",
+      "English": "dropout|drop-out|withdrawal",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중도탈락",
+      "English": "discontinuation",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "중재 모델",
+      "English": "intervention model",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중재 배정 방법",
+      "English": "intervention assignment method",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중재 후 평가",
+      "English": "post-intervention assessment|post-intervention evaluation",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "중재자",
+      "English": "interventionist",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "증례기록서",
+      "English": "case report form|CRF",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "증례기록서",
+      "English": "case report form",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "직접 열람",
+      "English": "direct access",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "질병 관련 사례|질병 관련 증례|질병 관련 반응|질병 관련 사건",
+      "English": "disease-related event|DRE",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "참여 상태",
+      "English": "participation status|disposition",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "참여 연구자|참여 시험자",
+      "English": "participating investigator",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "참여기관",
+      "English": "participating site",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "참여자 배정|참가자 배정",
+      "English": "participant assignment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "참여자|참가자",
+      "English": "participant",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "철회",
+      "English": "withdrawal",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "첨가제",
+      "English": "excipient|additive",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "초회용량|초기 용량",
+      "English": "initial dose",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "총 투여량|총 투여용량|총 용량",
+      "English": "total dose",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "최고정량한계",
+      "English": "upper limit of quantification",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "최소정량한계|최저정량한계|정량 하한",
+      "English": "lower limit of quantification|lower limit of quantitation|LLOQ",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "최종분석",
+      "English": "final analysis",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "추적 방문|추적관찰 방문",
+      "English": "follow-up visit",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "추적관찰",
+      "English": "follow-up",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "추적관찰 기간",
+      "English": "follow-up period",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "추적관찰 실패",
+      "English": "lost to follow-up",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "추적관찰 평가",
+      "English": "follow-up assessment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "추적조사",
+      "English": "follow-up",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "층화",
+      "English": "stratification",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "층화 요인|층화인자",
+      "English": "stratification factor",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "치료 목표",
+      "English": "therapeutic goal|treatment goal",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "치료 순응도|복약 순응도",
+      "English": "treatment adherence|treatment compliance",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "치료 종료",
+      "English": "end of treatment",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "치료군|투약군|투여군",
+      "English": "treatment group",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "코호트 확장",
+      "English": "cohort expansion",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "탐색 임상시험",
+      "English": "exploratory clinical study",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "탐색적 목적",
+      "English": "exploratory objective",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "탐색적 평가변수",
+      "English": "exploratory endpoint",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "통계 고려사항|통계적 고려사항",
+      "English": "statistical considerations",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "통계분석",
+      "English": "statistical analysis",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "통계분석계획서",
+      "English": "statistical analysis plan|SAP",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "통증 평가",
+      "English": "pain assessment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "투약|투여",
+      "English": "dose|dosing|administration",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "투약일|투여일",
+      "English": "dosing date",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "투여",
+      "English": "administration|dose|treatment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "투여 간격",
+      "English": "dose interval",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "투여 경로",
+      "English": "route of administration|administration route",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "투여개시일",
+      "English": "treatment start date",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "투여용법|용량용법|용법용량",
+      "English": "dose regimen|dosage regimen|dosing regimen|regimen",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "투여일",
+      "English": "treatment date",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "특별 관심대상 이상반응",
+      "English": "adverse events of special interest|AESI",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "평가군",
+      "English": "evaluation group",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "평가변수",
+      "English": "endpoint",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "표본 크기|표본 수",
+      "English": "sample size",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "표준 치료",
+      "English": "standard of care|standard treatment",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "표준편차",
+      "English": "standard deviation|SD",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "품질 관리",
+      "English": "quality control|QC",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "품질 관리 검토",
+      "English": "quality control review|QC review",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "품질 허용한계",
+      "English": "quality tolerance limits|QTL",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "품질관리",
+      "English": "quality control|quality management",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "품질관리시료|QC 검체",
+      "English": "quality control sample|QC sample",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "피험자",
+      "English": "subject",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "하위군 분석",
+      "English": "subgroup analysis|sub-group analysis",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "해당 사항 없음",
+      "English": "not applicable|NA",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "허용 기준",
+      "English": "acceptance criteria",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "현장검사|현장진단검사",
+      "English": "point-of-care testing|POCT",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "화합물 번호",
+      "English": "compound number",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "화합물명",
+      "English": "compound name",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "환자군",
+      "English": "patient group",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "활동 일정",
+      "English": "schedule of activities|SOA",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "활력징후",
+      "English": "vital sign",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "활성 대조약",
+      "English": "active comparator",
+      "Category": "Core Protocol Term",
+      "Source": "Built-in"
+    },
+    {
+      "Korean": "회복군",
+      "English": "recovery group",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "회복기간",
+      "English": "recovery period",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "회수",
+      "English": "retrieve",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "휴약",
+      "English": "washout|wash-out",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "휴약기",
+      "English": "washout period",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    },
+    {
+      "Korean": "희귀의약품",
+      "English": "orphan drug",
+      "Category": "External Glossary",
+      "Source": "Clinical Trials TB"
+    }
+  ],
+  "section_headers": {
+    "korean": [
+      "1 서론\t26",
+      "1.1 질환 및 기존 치료법에 대한 배경\t26",
+      "1.2 임상시험용 의약품 프로파일\t27",
+      "1.3 선행 임상시험 수행 결과\t28",
+      "1.3.1 제1상 임상시험(DW_DWP14012001)\t28",
+      "1.3.2 제2상 임상시험(DW_DWP14012002)\t28",
+      "1.3.3 제3상 임상시험(DW_DWP14012301)\t28",
+      "1.3.4 제3상 임상시험(DW_DWP14012303)\t29",
+      "1.4 임상시험 수행의 이론적 근거(rationale)\t29",
+      "1.5 유익성·위험성 평가\t30",
+      "2 임상시험의 목적\t32",
+      "2.1 일차 목적\t32",
+      "2.2 이차 목적\t32",
+      "3 임상시험 모집단\t33",
+      "3.1 목표한 시험대상자의 수\t33",
+      "3.2 선정기준\t33",
+      "3.3 제외기준\t33",
+      "3.4 개별 시험대상자의 임상시험 종료\t37",
+      "3.5 중도탈락 기준\t37",
+      "3.6 시험대상자의 대체\t38"
+    ],
+    "english": [
+      "1 Introduction\t22",
+      "1.1 Background on Disease and Existing Treatment\t22",
+      "1.2 Investigational Product Profile\t23",
+      "1.3 Results of Prior Clinical Studies\t23",
+      "1.3.1 Phase 1 Study (DW_DWP14012001)\t23",
+      "1.3.2 Phase 2 Study (DW_DWP14012002)\t23",
+      "1.3.3 Phase 3 Study (DW_DWP14012301)\t23",
+      "1.3.4 Phase 3 Study (DW_DWP14012303)\t24",
+      "1.4 Rationale for the Conduct of a Clinical Study\t24",
+      "1.5 Assessment of Benefits and Risks\t25",
+      "2 Study Objectives\t26",
+      "2.1 Primary Objective\t26",
+      "2.2 Secondary Objective\t26",
+      "3 Study Population\t27",
+      "3.1 Target Number of Subjects\t27",
+      "3.2 Inclusion Criteria\t27",
+      "3.3 Exclusion Criteria\t27",
+      "3.4 End of Study for Individual Subjects\t30",
+      "3.5 Criteria for Discontinuation or Withdrawal of Subjects\t30",
+      "3.6 Subject Replacement\t30"
+    ]
+  }
+}
