@@ -1,426 +1,702 @@
-# Phase 2 MVP Architecture Diagram
+# TransAI System Architecture (Actual Implementation)
 
-## System Architecture Overview
+## Overview
 
-```mermaid
-graph TB
-    subgraph "User Interface Layer"
-        UI[Streamlit UI]
-        UPLOAD[File Upload]
-        EVAL[Evaluation Interface]
-    end
+This document describes the actual architecture of the TransAI translation system as currently implemented.
 
-    subgraph "Data Input Layer"
-        TEST[Test Data<br/>KO-EN: 1,400 segments]
-        GLOSS[Glossary Data<br/>2,794 terms]
-        REF[Reference Docs<br/>Protocol pairs]
-    end
+**Architecture Philosophy**: Simple, reliable, glossary-enhanced LLM translation with term consistency tracking.
 
-    subgraph "Core Processing Pipeline"
-        LOADER[Data Loader]
-        SEGMENT[Segment Processor]
-        SEARCH[Glossary Search Engine]
-        CONTEXT[Context Buisample_clientr]
-        TRANS[Translation Service]
-    end
+---
 
-    subgraph "Memory & Cache Layer"
-        VALKEY[(Valkey/Redis<br/>Term Cache)]
-        SESSION[Session Manager]
-        CONSIST[Consistency Tracker]
-    end
+## System Components
 
-    subgraph "LLM Integration"
-        GPT5[GPT-5 API<br/>Owl Model]
-        PROMPT[Prompt Formatter]
-    end
-
-    subgraph "Output & Evaluation"
-        RESULT[Translation Result]
-        METRICS[Metrics Collector]
-        EXPORT[CSV Export]
-    end
-
-    %% Data Flow
-    UI --> UPLOAD
-    UPLOAD --> TEST
-    TEST --> LOADER
-    GLOSS --> LOADER
-    REF --> LOADER
-    
-    LOADER --> SEGMENT
-    SEGMENT --> SEARCH
-    SEGMENT --> SESSION
-    
-    SEARCH --> CONTEXT
-    SESSION --> CONSIST
-    CONSIST --> CONTEXT
-    
-    CONTEXT --> PROMPT
-    PROMPT --> GPT5
-    GPT5 --> TRANS
-    
-    TRANS --> RESULT
-    TRANS --> CONSIST
-    RESULT --> EVAL
-    RESULT --> METRICS
-    METRICS --> EXPORT
-    
-    %% Cache interactions
-    SEARCH -.-> VALKEY
-    CONSIST -.-> VALKEY
-    SESSION -.-> VALKEY
-
-    style UI fill:#e1f5fe
-    style VALKEY fill:#fff3e0
-    style GPT5 fill:#f3e5f5
-    style CONTEXT fill:#e8f5e9
+```
+┌──────────────────────────────────────────────────────────┐
+│                TransAI Translation System                 │
+└──────────────────────────────────────────────────────────┘
+                          │
+        ┌─────────────────┼─────────────────┐
+        │                 │                 │
+    ┌───▼────┐      ┌────▼─────┐    ┌─────▼──────┐
+    │ Input  │      │ Glossary │    │  Memory    │
+    │ Layer  │      │  System  │    │  (Valkey)  │
+    └───┬────┘      └────┬─────┘    └─────┬──────┘
+        │                │                 │
+        └────────────────▼─────────────────┘
+                         │
+                 ┌───────▼────────┐
+                 │ Pipeline Layer │
+                 │  (6 variants)  │
+                 └───────┬────────┘
+                         │
+                 ┌───────▼────────┐
+                 │   LLM Layer    │
+                 │  (GPT-5 OWL)   │
+                 └───────┬────────┘
+                         │
+                  ┌──────▼───────┐
+                  │ Output Layer │
+                  │   (Excel)    │
+                  └──────────────┘
 ```
 
-## Detailed Data Flow Diagram
+---
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant UI as Streamlit UI
-    participant DL as Data Loader
-    participant SP as Segment Processor
-    participant GS as Glossary Search
-    participant VK as Valkey Cache
-    participant CB as Context Buisample_clientr
-    participant TM as Translation Memory
-    participant LLM as GPT-5 (Owl)
-    participant TC as Consistency Tracker
-    participant M as Metrics
+## Layer 1: Input Processing
 
-    U->>UI: Upload test file & glossary
-    UI->>DL: Load data files
-    DL->>DL: Parse Excel files
-    DL->>SP: Send segments for processing
-    
-    loop For each segment
-        SP->>VK: Check session exists
-        alt New session
-            VK->>VK: Create doc session
-        end
-        
-        SP->>GS: Search relevant glossary terms
-        GS->>GS: Keyword matching & ranking
-        GS-->>VK: Cache frequent terms
-        
-        SP->>TC: Get locked terms for doc
-        TC->>VK: Retrieve doc:{id}:terms
-        VK-->>TC: Return existing terms
-        
-        SP->>CB: Build smart context
-        CB->>CB: Assemble components
-        Note over CB: 1. Source text (33 tokens)<br/>2. Relevant glossary (150 tokens)<br/>3. Locked terms (60 tokens)<br/>4. Previous context (40 tokens)<br/>5. Instructions (50 tokens)
-        
-        CB->>CB: Optimize token usage
-        CB->>LLM: Send context (≤500 tokens)
-        LLM->>LLM: Process translation
-        LLM-->>CB: Return translation
-        
-        CB->>TC: Store new term mappings
-        TC->>VK: Update doc:{id}:terms
-        
-        CB->>M: Log metrics
-        Note over M: Tokens used<br/>Context size<br/>Cache hits<br/>Response time
-    end
-    
-    SP->>UI: Display results
-    UI->>U: Show translation & metrics
-    U->>UI: Evaluate quality
-    UI->>M: Store evaluation
-    M->>UI: Generate report
+### Components
+- **Excel Parser** - Reads source segments from Excel files
+- **Data Validator** - Validates required columns and data format
+- **Batch Generator** - Groups segments for batch processing (optional)
+
+### Data Flow
+```python
+Input: Excel file with columns [Segment ID, Source Text, Reference, Comments]
+  ↓
+Parse and validate
+  ↓
+Output: List of segment dictionaries
 ```
 
-## Core Module Architecture
+### Implementation
+- Uses `pandas` and `openpyxl` for Excel I/O
+- All pipelines implement similar input handling
+- Supports both individual and batch modes
 
-```mermaid
-graph LR
-    subgraph "1. Data Loader Module"
-        DL1[Excel Parser]
-        DL2[Data Validator]
-        DL3[Batch Generator]
-        DL1 --> DL2 --> DL3
-    end
+---
 
-    subgraph "2. Glossary Search Module"
-        GS1[Term Indexer]
-        GS2[Keyword Matcher]
-        GS3[Relevance Ranker]
-        GS4[Cache Manager]
-        GS1 --> GS2 --> GS3 --> GS4
-    end
+## Layer 2: Glossary System
 
-    subgraph "3. Context Buisample_clientr Module"
-        CB1[Component Collector]
-        CB2[Token Counter]
-        CB3[Priority Selector]
-        CB4[Context Optimizer]
-        CB1 --> CB2 --> CB3 --> CB4
-    end
+### Components
 
-    subgraph "4. Translation Service Module"
-        TS1[Request Handler]
-        TS2[Prompt Buisample_clientr]
-        TS3[API Client]
-        TS4[Response Parser]
-        TS1 --> TS2 --> TS3 --> TS4
-    end
+**Glossary Loader** (`src/glossary/glossary_loader.py`)
+- Loads glossaries from JSON or Excel format
+- Supports multiple glossary sources
+- Handles 419-2,906 terms depending on pipeline
 
-    subgraph "5. Consistency Tracker Module"
-        CT1[Term Extractor]
-        CT2[Mapping Store]
-        CT3[Conflict Resolver]
-        CT4[Lock Manager]
-        CT1 --> CT2 --> CT3 --> CT4
-    end
+**Glossary Search** (`src/glossary/glossary_search.py`)
+- Simple keyword matching algorithm
+- Finds terms that appear in source text
+- Returns matching term pairs with metadata
+
+**Combined Glossary** (`src/glossary/create_combined_glossary.py`)
+- Combines multiple glossary sources
+- Priority-based deduplication
+- Source tracking
+
+### Glossary Data
+- **Small glossary**: 419 clinical terms (EN-KO specialized)
+- **Large glossary**: 2,906 terms (comprehensive)
+- Format: `{korean, english, source, priority}`
+
+### Usage Pattern
+```python
+# Load glossary
+glossary_loader = GlossaryLoader()
+terms = glossary_loader.load_all_glossaries()
+
+# Search for matching terms
+matches = search_glossary(source_text, terms)
+# Returns: List of {korean, english} dicts found in source_text
 ```
 
-## Pattern Recognition & Matching Flow
+---
 
-```mermaid
-graph TD
-    subgraph "Pattern Recognition Pipeline"
-        INPUT[Source Segment]
-        
-        subgraph "Term Detection"
-            TD1[Named Entity Recognition]
-            TD2[Medical Term Detection]
-            TD3[Acronym Identification]
-        end
-        
-        subgraph "Pattern Matching"
-            PM1[Exact Match Search]
-            PM2[Fuzzy Match Search]
-            PM3[Partial Match Search]
-        end
-        
-        subgraph "Translation Patterns"
-            TP1[Previously Translated Terms]
-            TP2[Glossary Matches]
-            TP3[Session Consistency Rules]
-        end
-        
-        OUTPUT[Matched Patterns]
-    end
-    
-    INPUT --> TD1 & TD2 & TD3
-    TD1 & TD2 & TD3 --> PM1
-    PM1 --> PM2 --> PM3
-    PM1 & PM2 & PM3 --> TP1 & TP2 & TP3
-    TP1 & TP2 & TP3 --> OUTPUT
+## Layer 3: Memory Architecture (Simple)
+
+### What Exists: Valkey Only
+
+```
+┌─────────────────────────────────┐
+│     Valkey/Redis (Port 6379)    │
+├─────────────────────────────────┤
+│                                 │
+│  Session Management:            │
+│  • doc:{id}:metadata            │
+│  • doc:{id}:terms               │
+│  • doc:{id}:locked              │
+│                                 │
+│  Purpose:                       │
+│  • Track term consistency       │
+│  • Store session progress       │
+│  • Lock terms for reuse         │
+│                                 │
+│  Performance:                   │
+│  • O(1) lookups                 │
+│  • <1ms latency                 │
+│  • Connection pooling           │
+│                                 │
+└─────────────────────────────────┘
 ```
 
-## Context Assembly Pipeline
+### Valkey Manager (`src/memory/valkey_manager.py`)
 
-```mermaid
-flowchart TD
-    START([New Segment]) --> EXTRACT[Extract Key Terms]
-    
-    EXTRACT --> SEARCH{Search Glossary}
-    SEARCH -->|Found| RANK[Rank by Relevance]
-    SEARCH -->|Not Found| SKIP1[Skip Glossary]
-    
-    RANK --> FILTER[Filter Top 10 Terms]
-    FILTER --> CHECK_CACHE{Check Valkey Cache}
-    
-    CHECK_CACHE -->|Hit| USE_CACHED[Use Cached Terms]
-    CHECK_CACHE -->|Miss| GET_LOCKED[Get Session Terms]
-    
-    USE_CACHED --> ASSEMBLE
-    GET_LOCKED --> ASSEMBLE[Assemble Context]
-    SKIP1 --> ASSEMBLE
-    
-    ASSEMBLE --> COUNT{Count Tokens}
-    COUNT -->|< 500| FORMAT[Format Prompt]
-    COUNT -->|> 500| REDUCE[Reduce Context]
-    
-    REDUCE --> PRIORITIZE[Prioritize Terms]
-    PRIORITIZE --> COUNT
-    
-    FORMAT --> SEND[Send to GPT-5]
-    SEND --> RESPONSE[Get Translation]
-    
-    RESPONSE --> EXTRACT_PAIRS[Extract Term Pairs]
-    EXTRACT_PAIRS --> STORE[Store in Valkey]
-    STORE --> UPDATE[Update Consistency]
-    UPDATE --> END([Translation Complete])
+**Core Operations:**
+```python
+# Session management
+create_session(doc_id, source_lang, target_lang, total_segments)
+update_session_progress(doc_id, processed_count)
+
+# Term consistency
+add_term_mapping(doc_id, source_term, target_term, segment_id)
+get_term_mapping(doc_id, source_term) → target_term
+lock_term(doc_id, source_term)  # Prevent changes
+
+# Session cleanup
+cleanup_session(doc_id)  # Remove after completion
 ```
 
-## Memory Management Architecture
+**Data Structures:**
+- `doc:{id}:metadata` - Hash: session info, progress, status
+- `doc:{id}:terms` - Hash: `{source_term: target_term}` mappings
+- `doc:{id}:locked` - Set: locked term list
 
-```mermaid
-graph TB
-    subgraph "Valkey/Redis Cache Structure"
-        subgraph "Document Sessions"
-            DS1[doc:123:metadata]
-            DS2[doc:123:terms]
-            DS3[doc:123:segments]
-        end
-        
-        subgraph "Term Consistency"
-            TC1[term:source->target]
-            TC2[lock:123:term]
-            TC3[freq:123:term]
-        end
-        
-        subgraph "Cache Optimization"
-            CO1[glossary:cache]
-            CO2[pattern:cache]
-            CO3[context:cache]
-        end
-    end
-    
-    subgraph "Access Patterns"
-        AP1[O(1) Term Lookup]
-        AP2[Session Scoped]
-        AP3[TTL Management]
-    end
-    
-    DS2 --> TC1
-    TC1 --> TC2
-    TC2 --> TC3
-    
-    AP1 --> DS2
-    AP2 --> DS1
-    AP3 --> DS3
+### Session Manager (`src/memory/session_manager.py`)
+
+Wraps Valkey operations for document-level session tracking:
+```python
+session_mgr = SessionManager(valkey_manager)
+session_id = session_mgr.create_session(doc_name, total_segments)
+session_mgr.update_progress(session_id, segment_id)
+session_mgr.end_session(session_id)
 ```
 
-## Translation Consolidation Flow
+### Consistency Tracker (`src/memory/consistency_tracker.py`)
 
-```mermaid
-flowchart LR
-    subgraph "Input Processing"
-        S1[Segment 1]
-        S2[Segment 2]
-        S3[Segment N]
-    end
-    
-    subgraph "Translation Pipeline"
-        T1[Translate]
-        T2[Validate]
-        T3[Consolidate]
-    end
-    
-    subgraph "Consistency Layer"
-        C1[Term Tracking]
-        C2[Pattern Learning]
-        C3[Conflict Resolution]
-    end
-    
-    subgraph "Final Output"
-        O1[Translated Segments]
-        O2[Consistency Report]
-        O3[Quality Metrics]
-    end
-    
-    S1 & S2 & S3 --> T1
-    T1 --> C1
-    C1 --> T2
-    T2 --> C2
-    C2 --> T3
-    T3 --> C3
-    C3 --> O1 & O2 & O3
+Ensures term consistency across document:
+```python
+tracker = ConsistencyTracker(valkey_manager, doc_id)
+tracker.add_term(source, target, segment_id)
+tracker.check_consistency(source)  # Get locked translation
 ```
 
-## Performance Metrics Flow
+### What Does NOT Exist
 
-```mermaid
-graph TD
-    subgraph "Metrics Collection Points"
-        M1[Context Building Time]
-        M2[Token Usage]
-        M3[Cache Hit Rate]
-        M4[Translation Time]
-        M5[Total Pipeline Time]
-    end
-    
-    subgraph "Aggregation"
-        A1[Per Segment Metrics]
-        A2[Per Document Metrics]
-        A3[Session Metrics]
-    end
-    
-    subgraph "Reporting"
-        R1[Real-time Dashboard]
-        R2[Batch Report]
-        R3[Comparison Analysis]
-    end
-    
-    M1 & M2 & M3 & M4 & M5 --> A1
-    A1 --> A2 --> A3
-    A3 --> R1 & R2 & R3
+- ❌ **Qdrant** - No vector database for semantic search
+- ❌ **Mem0** - No adaptive learning layer
+- ❌ **Translation Memory** - No TM database for reuse
+- ❌ **Caching of glossary results** - Not implemented despite Valkey capabilities
+
+> **Note**: These components are listed in `requirements.txt` but are not used in any code.
+
+---
+
+## Layer 4: Pipeline Processing
+
+### Available Pipelines
+
+#### 1. Batch Enhanced Pipeline (Recommended)
+**File**: `src/production_pipeline_batch_enhanced.py`
+
+- **Batch size**: 5 segments per API call
+- **Glossary**: 2,906 terms
+- **Style guide**: Configurable (10 variants)
+- **Speed**: ~0.4-0.5s per segment
+- **Use case**: General production use
+
+#### 2. EN-KO Specialized Pipeline
+**File**: `src/production_pipeline_en_ko.py`
+
+- **Direction**: English → Korean
+- **Glossary**: 419 clinical terms (specialized)
+- **Batch size**: 5 segments
+- **Use case**: Clinical protocol translation
+
+#### 3. KO-EN with Tag Preservation
+**File**: `src/production_pipeline_ko_en_improved.py`
+
+- **Direction**: Korean → English
+- **Special feature**: CAT tool tag handling
+- **Process**: Extract tags → Translate → Restore tags
+- **Use case**: CAT tool integration
+
+#### 4. Style Guide Testing Pipeline
+**File**: `src/production_pipeline_with_style_guide.py`
+
+- **Batch size**: 1 (individual processing)
+- **Feature**: A/B test 10 style guide variants
+- **Use case**: Quality optimization experiments
+
+#### 5 & 6. Additional Variants
+- `production_pipeline_working.py` - Legacy reference
+- `production_pipeline_en_ko_improved.py` - Alternative EN-KO
+
+### Common Pipeline Flow
+
+All pipelines follow this pattern:
+
+```
+1. LOAD DATA
+   └─> Read Excel + Load glossary
+
+2. FOR EACH SEGMENT (or batch of 5):
+   ├─> Search glossary for matching terms
+   ├─> Check Valkey for locked terms
+   ├─> Get previous 3-5 translations
+   ├─> Add style guide rules
+   └─> Build prompt (~200-500 tokens)
+
+3. CALL LLM
+   └─> GPT-5 OWL API (everything goes to LLM)
+
+4. TRACK CONSISTENCY
+   └─> Store term pairs in Valkey
+
+5. OUTPUT
+   └─> Write Excel with results + metrics
 ```
 
-## Error Handling & Recovery
+---
 
-```mermaid
-stateDiagram-v2
-    [*] --> LoadData
-    LoadData --> ProcessSegment
-    ProcessSegment --> SearchGlossary
-    
-    SearchGlossary --> BuildContext: Terms Found
-    SearchGlossary --> MinimalContext: No Terms
-    
-    BuildContext --> CheckTokens
-    CheckTokens --> Translate: ≤500 tokens
-    CheckTokens --> ReduceContext: >500 tokens
-    ReduceContext --> CheckTokens
-    
-    Translate --> StoreResults: Success
-    Translate --> Retry: API Error
-    Retry --> Translate: Attempt < 3
-    Retry --> Fallback: Attempt ≥ 3
-    
-    Fallback --> ManualReview
-    MinimalContext --> Translate
-    StoreResults --> [*]
-    ManualReview --> [*]
+## Layer 5: LLM Integration
+
+### GPT-5 OWL (Primary Model)
+
+**API Integration**:
+```python
+import openai
+
+client = openai.OpenAI()
+response = client.responses.create(
+    model="gpt-5",
+    input=[{"role": "user", "content": prompt}],
+    text={"verbosity": "medium"},
+    reasoning={"effort": "minimal"}
+)
 ```
 
-## Component Interaction Matrix
+**Prompt Structure**:
+```
+[Style Guide Rules: 100-600 tokens]
 
-| Component | Data Loader | Glossary Search | Context Buisample_clientr | Translation | Valkey | Metrics |
-|-----------|------------|-----------------|-----------------|-------------|---------|---------|
-| **Data Loader** | - | Provides glossary | Sends segments | - | - | Log load time |
-| **Glossary Search** | Receives glossary | - | Returns matches | - | Cache results | Hit/miss rate |
-| **Context Buisample_clientr** | Receives segments | Requests terms | - | Sends context | Get cached terms | Context size |
-| **Translation** | - | - | Receives context | - | Store translations | Token usage |
-| **Valkey** | - | Provides cache | Provides terms | Stores results | - | Cache metrics |
-| **Metrics** | Track performance | Track efficiency | Track optimization | Track quality | Track cache | - |
+[Glossary Terms: 50-200 tokens]
+- korean1 → english1
+- korean2 → english2
+...
 
-## Key Design Decisions
+[Locked Terms: 20-100 tokens]
+- term1: locked_translation1
+...
 
-### 1. Modular Architecture
-- Each module has single responsibility
-- Clear interfaces between components
-- Easy to test and debug individually
-- Can swap implementations (e.g., different search algorithms)
+[Previous Context: 30-80 tokens]
+Recent translations for continuity...
 
-### 2. Cache-First Design
-- Check Valkey before expensive operations
-- Cache glossary searches
-- Store term mappings for consistency
-- Session-based isolation
+[Segments to Translate]
+1. segment_text_1
+2. segment_text_2
+...
 
-### 3. Token Optimization Priority
-- Count tokens at each step
-- Prioritize high-value terms
-- Dynamic context adjustment
-- Fallback strategies for edge cases
+[Instructions]
+Translate following glossary and style guide.
+```
 
-### 4. Stream Processing
-- Process segments sequentially
-- Build consistency incrementally
-- Learn patterns during translation
-- Real-time metrics collection
+**Pricing** (2025 rates):
+- Input: $1.25 per 1M tokens
+- Output: $10.00 per 1M tokens
+- **Effective cost**: ~$0.006 per segment (batch mode)
 
-### 5. Fail-Safe Mechanisms
-- Graceful degradation on cache miss
-- API retry with exponential backoff
-- Fallback to minimal context
-- Manual review queue for failures
+### No Fallback Models
+
+Currently only GPT-5 OWL is used. API keys for other providers (Anthropic, Gemini, Upstage) are in `.env` but not utilized.
+
+---
+
+## Layer 6: Output Generation
+
+### Excel Export
+
+**Output Format**:
+```
+Sheet 1: Translations
+├─ Segment ID
+├─ Source Text
+├─ Translation
+├─ Quality Score (0.5-1.0)
+├─ Tokens Used
+├─ Cost
+├─ Glossary Terms Used
+└─ Method (always "LLM")
+
+Sheet 2: Metrics Summary
+├─ Total segments
+├─ Average quality score
+├─ Total tokens
+├─ Total cost
+├─ Processing time
+└─ Glossary coverage
+```
+
+### Quality Scoring
+
+**Current heuristic** (not validated):
+```python
+score = 0.5  # Base
++ 0.2 if translation exists
++ 0.1 if length ratio reasonable (0.5x-3x)
++ up to 0.2 for glossary term usage
++ up to 0.1 for clinical terminology patterns
+= 0.5 to 1.0 final score
+```
+
+**Note**: This is NOT a real quality metric. It doesn't compare against reference translations or use BLEU/COMET scores.
+
+---
+
+## Data Flow Diagram
+
+```
+┌────────────────┐
+│  User uploads  │
+│  Excel file    │
+└────────┬───────┘
+         │
+         ▼
+┌────────────────────────────┐
+│  Load Glossary             │
+│  (419 or 2,906 terms)      │
+└────────┬───────────────────┘
+         │
+         ▼
+┌────────────────────────────┐
+│  Create Valkey Session     │
+│  doc:{id}:metadata         │
+└────────┬───────────────────┘
+         │
+         ▼
+┌────────────────────────────┐
+│  FOR EACH SEGMENT/BATCH:   │
+│  ┌──────────────────────┐  │
+│  │ 1. Search glossary   │  │
+│  │ 2. Check Valkey      │  │
+│  │ 3. Get prev context  │  │
+│  │ 4. Add style guide   │  │
+│  │ 5. Build prompt      │  │
+│  └──────────────────────┘  │
+└────────┬───────────────────┘
+         │
+         ▼
+┌────────────────────────────┐
+│  Call GPT-5 OWL API        │
+│  (No TM check, always LLM) │
+└────────┬───────────────────┘
+         │
+         ▼
+┌────────────────────────────┐
+│  Parse Response            │
+│  Extract Translations      │
+└────────┬───────────────────┘
+         │
+         ▼
+┌────────────────────────────┐
+│  Update Valkey:            │
+│  - Store term pairs        │
+│  - Lock frequent terms     │
+│  - Update progress         │
+└────────┬───────────────────┘
+         │
+         ▼
+┌────────────────────────────┐
+│  Calculate Metrics         │
+│  (tokens, cost, quality)   │
+└────────┬───────────────────┘
+         │
+         ▼
+┌────────────────────────────┐
+│  Write Excel Output        │
+│  (Translations + Metrics)  │
+└────────────────────────────┘
+```
+
+---
+
+## Performance Characteristics
+
+### Throughput
+- **Batch mode**: ~120-150 segments/minute
+- **Individual mode**: ~30 segments/minute
+- **Bottleneck**: OpenAI API latency (~2.5s per batch)
+
+### Token Usage
+- **Per segment average**: 220-420 input tokens, 30-50 output tokens
+- **Batch efficiency**: 5 segments share context = lower per-segment cost
+
+### Cost
+- **Batch mode**: $0.006 per segment
+- **Individual mode**: $0.01 per segment
+- **1,400 segments**: ~$8.40 (batch) vs ~$14 (individual)
+
+### Memory
+- **Valkey**: ~10MB for typical session (1,400 segments)
+- **Python process**: ~200-300MB
+- **Minimal footprint** - no large vector databases
+
+---
+
+## Integration Points
+
+### Adding New Pipelines
+
+All pipelines should implement:
+```python
+class NewPipeline:
+    def __init__(self, model_name, batch_size, style_guide_variant):
+        # Initialize glossary, Valkey, style guide
+        pass
+
+    def translate_segment(self, segment):
+        # 1. Build context
+        # 2. Call LLM
+        # 3. Track consistency
+        # 4. Return result
+        pass
+
+    def run_pipeline(self, input_file):
+        # Process all segments and generate output
+        pass
+```
+
+### Adding New Glossaries
+
+```python
+# 1. Prepare glossary file (JSON or Excel)
+# Format: [{korean, english, source, priority}, ...]
+
+# 2. Load via GlossaryLoader
+loader = GlossaryLoader()
+new_terms = loader.load_custom_glossary("path/to/glossary.json")
+
+# 3. Pipeline will automatically use loaded terms
+```
+
+### Extending Style Guides
+
+```python
+# In src/style_guide_config.py
+
+class StyleGuideVariant(Enum):
+    CUSTOM_NEW = "custom_new"
+
+# Add to StyleGuideManager
+def _get_custom_new_guide(self):
+    return """
+    [Your custom translation guidelines]
+    """
+```
+
+---
+
+## Deployment Architecture
+
+### Local Development
+```
+├─ Python 3.11+ environment
+├─ Valkey server (localhost:6379)
+├─ OpenAI API key in .env
+└─ Excel input files
+```
+
+### Production Setup (Recommended)
+```
+┌──────────────────────┐
+│  Application Server  │
+│  ├─ Python app       │
+│  ├─ venv             │
+│  └─ .env config      │
+└──────────┬───────────┘
+           │
+           ├─> Valkey (Redis-compatible)
+           │   └─ Managed service recommended
+           │
+           └─> OpenAI API
+               └─ Requires valid API key
+```
+
+### Scaling Considerations
+
+**Current limitations**:
+- Single-threaded processing (no Celery)
+- All state in single Valkey instance
+- No load balancing
+
+**To scale beyond ~5,000 segments/hour**:
+- Add Celery for distributed processing
+- Use Valkey cluster for high availability
+- Implement request queuing
+- Add rate limiting for API calls
+
+---
+
+## Error Handling
+
+### Pipeline Error Recovery
+
+All pipelines implement:
+```python
+try:
+    translation = translate_batch(segments)
+except OpenAIError as e:
+    # Log error, return error results
+    # No automatic retry (would need Celery)
+    logger.error(f"API error: {e}")
+    results = create_error_results(segments, e)
+```
+
+### Valkey Failover
+
+```python
+try:
+    valkey_mgr = ValkeyManager()
+    # Use Valkey for consistency
+except ConnectionError:
+    # Fall back to in-memory dictionary
+    logger.warning("Valkey unavailable, using in-memory fallback")
+    self.locked_terms = {}  # Local dict instead
+```
+
+**Note**: Graceful degradation to in-memory storage if Valkey unavailable.
+
+---
+
+## Configuration
+
+### Environment Variables (.env)
+
+```bash
+# Required
+OPENAI_API_KEY=sk-proj-your_key_here
+
+# Optional (Valkey)
+VALKEY_HOST=localhost
+VALKEY_PORT=6379
+VALKEY_DB=0
+
+# Logging
+LOG_LEVEL=INFO
+```
+
+### Pipeline Configuration
+
+```python
+# Batch size
+pipeline = EnhancedBatchPipeline(batch_size=5)  # 1-10 supported
+
+# Style guide
+pipeline = EnhancedBatchPipeline(
+    style_guide_variant="standard"  # none|minimal|standard|comprehensive
+)
+
+# Model (currently only GPT-5 OWL used)
+pipeline = EnhancedBatchPipeline(model_name="Owl")
+```
+
+---
+
+## Testing
+
+### Test Coverage
+
+**Integration Tests**:
+- `test_phase2_integration.py` - Full pipeline workflows
+- `test_valkey_integration.py` - Valkey operations
+- `test_context_builder_integration.py` - Context assembly
+
+**Unit Tests**:
+- `test_be003_core.py` - Core functionality
+- `test_token_optimizer_simple.py` - Token optimization
+
+**Import Tests**:
+- `test_imports.py` - Module import validation
+- `production_import_test.py` - Production readiness
+
+### Running Tests
+
+```bash
+# All tests
+pytest src/tests/ -v
+
+# Specific test
+pytest src/tests/test_valkey_integration.py -v
+
+# With coverage
+pytest --cov=src src/tests/
+```
+
+---
+
+## Architecture Decisions
+
+### Why This Simple Architecture?
+
+✅ **Proven to work** - Successfully processes 1,400+ segment documents
+✅ **Easy to understand** - New developers can learn it quickly
+✅ **Maintainable** - No complex multi-tier memory orchestration
+✅ **Cost-effective** - Batch processing reduces API costs 80%
+✅ **Reliable** - Fewer moving parts = fewer failure points
+
+### What We Sacrificed
+
+❌ **Translation Memory** - Could save 40-50% costs but adds complexity
+❌ **Semantic Search** - Would need Qdrant infrastructure
+❌ **Adaptive Learning** - Would need Mem0 integration
+❌ **Auto Scaling** - Would need Celery/distributed architecture
+
+### Trade-off Rationale
+
+For medical translation use case:
+- **Quality > Cost** - LLM for every segment ensures quality
+- **Simplicity > Features** - Easier to debug and maintain
+- **Proven > Experimental** - Stick with what works
+
+---
+
+## Future Extensions (If Needed)
+
+If requirements change, these could be added:
+
+1. **Translation Memory** (4-6 weeks)
+   - Build TM database from protocol pairs
+   - Implement fuzzy matching
+   - Add routing logic (TM vs LLM)
+   - Requires Qdrant for semantic search
+
+2. **Distributed Processing** (2-3 weeks)
+   - Implement Celery task queue
+   - Add Redis/Valkey as broker
+   - Create worker pool architecture
+
+3. **Advanced Quality Scoring** (1-2 weeks)
+   - Integrate BLEU/COMET scores
+   - Add reference-based validation
+   - Implement hallucination detection
+
+4. **Production Monitoring** (1-2 weeks)
+   - Add Prometheus metrics
+   - Set up Grafana dashboards
+   - Implement alerting
+
+---
+
+## Summary
+
+TransAI uses a **simple, proven architecture**:
+
+```
+Excel Input
+  → Load Glossary (419-2,906 terms)
+  → Build Context (glossary + style + history)
+  → Call GPT-5 OWL (everything)
+  → Track Consistency (Valkey)
+  → Excel Output
+```
+
+**Strengths**: Simple, reliable, good glossary integration, term consistency
+
+**Limitations**: No TM (higher costs), no semantic search, no distributed processing
+
+**Status**: Production-ready for current use cases
+
+---
+
+**Document Version**: 2.0 (Simplified to match implementation)
+**Last Updated**: November 23, 2025
+**Architecture Status**: Accurately reflects codebase

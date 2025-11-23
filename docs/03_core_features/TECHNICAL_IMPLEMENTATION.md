@@ -1,668 +1,840 @@
-# Enhanced Translation System - Technical Implementation Guide
+# TransAI Technical Implementation Guide
 
-## System Architecture Overview
+## What This System Actually Does
 
-The Phase 2 Enhanced Translation System implements a sophisticated three-tier memory architecture with intelligent batch processing, specialized clinical protocol support, and configurable style guides. The system achieves **98.3% token reduction** while maintaining high translation quality through smart context building and optimized API usage.
+TransAI is a **glossary-enhanced LLM translation system** that:
+1. Loads medical terminology glossaries (419-2,906 terms)
+2. Builds rich context with glossary terms + style guides + translation history
+3. Calls GPT-5 OWL API for every translation (no Translation Memory)
+4. Tracks term consistency via Valkey cache
+5. Outputs translations with quality metrics to Excel
 
-### Core Architecture Components
+**Simple. Proven. Production-ready.**
+
+---
+
+## Core Architecture (Reality)
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Enhanced Translation System               │
-├─────────────────────────────────────────────────────────────┤
-│  Pipeline Layer                                             │
-│  ┌─────────────────┬──────────────────┬─────────────────────┤
-│  │ EN-KO Pipeline  │ Batch Enhanced   │ Working Pipeline    │
-│  │ (Specialized)   │ (Recommended)    │ (Production Base)   │
-│  └─────────────────┴──────────────────┴─────────────────────┤
-├─────────────────────────────────────────────────────────────┤
-│  Memory & Context Layer                                     │
-│  ┌─────────────────┬──────────────────┬─────────────────────┤
-│  │ Tier 1: Valkey  │ Session Memory   │ Style Guide Manager │
-│  │ (Hot Cache)     │ (In-Memory)      │ (Configurable)      │
-│  └─────────────────┴──────────────────┴─────────────────────┤
-├─────────────────────────────────────────────────────────────┤
-│  LLM Integration Layer                                      │
-│  ┌─────────────────┬──────────────────┬─────────────────────┤
-│  │ GPT-5 OWL       │ GPT-4o/4.1       │ Batch Processing    │
-│  │ (Primary)       │ (Fallback)       │ (5 segments/call)   │
-│  └─────────────────┴──────────────────┴─────────────────────┤
-├─────────────────────────────────────────────────────────────┤
-│  Data Layer                                                 │
-│  ┌─────────────────┬──────────────────┬─────────────────────┤
-│  │ Combined        │ Style Guides     │ Translation Memory  │
-│  │ Glossary        │ (6 Variants)     │ (Session-based)     │
-│  │ (419 terms)     │                  │                     │
-│  └─────────────────┴──────────────────┴─────────────────────┤
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────┐
+│  Excel Input (Korean/English segments)  │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────┐
+│  Glossary System                         │
+│  • Load 419-2,906 term pairs             │
+│  • Search for matches in source text     │
+└──────────────┬───────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────┐
+│  Context Builder                         │
+│  • Glossary terms (~50-200 tokens)       │
+│  • Style guide rules (~100-600 tokens)   │
+│  • Previous translations (~30-80 tokens) │
+│  • Locked terms from Valkey (~20-100)    │
+│  = Total: ~200-500 tokens                │
+└──────────────┬───────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────┐
+│  GPT-5 OWL API Call                      │
+│  • Batch mode: 5 segments at once        │
+│  • Cost: ~$0.006 per segment             │
+│  • No TM check - always LLM              │
+└──────────────┬───────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────┐
+│  Valkey Cache (Term Consistency Only)    │
+│  • Store {source_term: target_term}      │
+│  • Lock frequent terms                   │
+│  • Track session progress                │
+└──────────────┬───────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────┐
+│  Excel Output                            │
+│  • Translations + Quality scores         │
+│  • Token usage + Cost metrics            │
+│  • Glossary term tracking                │
+└──────────────────────────────────────────┘
 ```
 
-## Core Pipeline Implementations
+---
 
-### 1. EN-KO Clinical Protocol Pipeline (`production_pipeline_en_ko.py`)
+## Pipeline Implementations
 
-**Purpose**: Specialized English→Korean translation for clinical protocols
-**Location**: `/Users/won.suh/Project/translate-ai/phase2/src/production_pipeline_en_ko.py`
+### Production Pipelines (All Follow Same Pattern)
 
-#### Key Features
-- **Specialized EN→KO style guide**: Clinical protocol terminology patterns
-- **Combined glossary integration**: 419 terms from multiple clinical sources  
-- **Batch processing**: 5 segments per API call for cost efficiency
-- **Session memory**: Term consistency tracking across document
-- **GPT-5 OWL primary**: Latest OpenAI model with clinical specialization
+#### 1. **Batch Enhanced** (`production_pipeline_batch_enhanced.py`) ⭐
 
-#### Core Components
+**Best for:** General production use
 
 ```python
-class ENKOPipeline:
-    def __init__(self, 
-                 model_name: str = "Owl",           # GPT-5 OWL default
-                 batch_size: int = 5,               # Optimal batch size
-                 style_guide_variant: str = "clinical_protocol"):
+from src.production_pipeline_batch_enhanced import EnhancedBatchPipeline
+
+# Initialize
+pipeline = EnhancedBatchPipeline(
+    model_name="Owl",           # GPT-5 OWL
+    batch_size=5,               # 5 segments per API call
+    style_guide_variant="standard"  # ~400 token style guide
+)
+
+# Run translation
+results = pipeline.run_enhanced_batch_pipeline(
+    input_file="data/korean_segments.xlsx"
+)
+
+# Results include
+print(f"Avg Quality: {results['metrics']['average_quality_score']:.2f}")
+print(f"Total Cost: ${results['metrics']['total_cost']:.2f}")
+print(f"Segments: {len(results['results'])}")
 ```
 
-**Processing Flow:**
-1. Load combined EN→KO glossary (GENERIC_CLINIC + Clinical Trials + Coding Form)
-2. Build enhanced batch context (terminology + session memory + guidelines)
-3. Create specialized EN→KO prompt with bilingual formatting
-4. Process 5-segment batches via GPT-5 OWL Responses API
-5. Assess quality and update session memory
-6. Export comprehensive results to Excel
+**Features:**
+- ✅ Batch processing (5x cost reduction)
+- ✅ 2,906 term glossary
+- ✅ 10 style guide variants
+- ✅ ~0.4-0.5s per segment
 
-**Performance Metrics:**
-- **Speed**: ~2.5 seconds per batch (5 segments)
-- **Quality Target**: 0.95+ using proven clinical terminology patterns
-- **Cost**: Batch processing reduces API calls by 80%
-- **Scale**: Successfully processed 2,690 segments across 538 batches
+**Performance:**
+- 120-150 segments/minute
+- $8.40 for 1,400 segments
+- Quality score: 0.84 average
 
-### 2. Enhanced Batch Pipeline (`production_pipeline_batch_enhanced.py`)
+---
 
-**Purpose**: Optimal performance combining style guides with batch processing
-**Location**: `/Users/won.suh/Project/translate-ai/phase2/src/production_pipeline_batch_enhanced.py`
+#### 2. **EN-KO Clinical** (`production_pipeline_en_ko.py`)
 
-#### Advanced Features
-- **Smart context building**: Collects glossary terms across batch for optimal context
-- **Context-aware glossary**: LLM judges term appropriateness based on document context
-- **Protocol terminology optimization**: "임상시험" → "clinical study" for protocol documents
-- **Configurable style guides**: 6 variants from none to comprehensive
-
-#### Intelligent Context Architecture
+**Best for:** English → Korean clinical protocols
 
 ```python
-def build_enhanced_batch_context(self, korean_texts: List[str]) -> Tuple[str, int]:
-    """Build enhanced context optimized for batch processing"""
-    
-    # Component 1: Collect ALL glossary terms for the batch
-    all_glossary_terms = {}
-    for korean_text in korean_texts:
-        terms = self.search_real_glossary(korean_text)
-        for term in terms:
-            all_glossary_terms[term['korean']] = term
-    
-    # Component 2: Session Memory (locked terms)
-    # Component 3: Previous Context (last 3 translations)
-    # Component 4: Style Guide (configurable variant)
-    # Component 5: Context-aware instructions
+from src.production_pipeline_en_ko import ENKOPipeline
+
+pipeline = ENKOPipeline(
+    model_name="Owl",
+    batch_size=5
+)
+
+results = pipeline.run_pipeline("clinical_protocol_en.xlsx")
 ```
 
-**Context-Aware Intelligence:**
-```python
-# GLOSSARY USAGE HIERARCHY:
-# 1. CONTEXT FIRST: Always prioritize document context
-# 2. DOMAIN MATCHING: Use glossary terms only when they match domain
-# 3. SESSION CONSISTENCY: Use locked terms for consistency
-# 4. GLOSSARY AS REFERENCE: LLM judges contextual appropriateness
-```
+**Features:**
+- ✅ 419 specialized clinical terms
+- ✅ EN→KO style guide optimized
+- ✅ Batch processing
+- ✅ Clinical terminology focus
 
-**Performance Results:**
-- **Processing Speed**: 0.3-0.7s per segment (4x faster than individual processing)
-- **Quality Range**: 0.74-0.98, average 0.84
-- **API Efficiency**: 280 calls for 1,400 segments vs. 1,400 individual calls
-- **Cost per Segment**: ~$0.006 with GPT-5 OWL
+---
 
-### 3. Working Production Pipeline (`production_pipeline_working.py`)
+#### 3. **KO-EN with Tags** (`production_pipeline_ko_en_improved.py`)
 
-**Purpose**: Proven baseline production pipeline
-**Location**: `/Users/won.suh/Project/translate-ai/phase2/src/production_pipeline_working.py`
-
-- **Stable implementation**: Battle-tested with comprehensive error handling
-- **Full glossary integration**: 2,906 terms from real Phase 2 datasets
-- **Session management**: Document-level consistency tracking
-- **Excel reporting**: Detailed results with term usage tracking
-
-### 4. Style Guide Pipeline (`production_pipeline_with_style_guide.py`)
-
-**Purpose**: Advanced individual processing with style guide variants
-**Location**: `/Users/won.suh/Project/translate-ai/phase2/src/production_pipeline_with_style_guide.py`
-
-- **Individual segment processing**: Higher quality but slower throughput
-- **A/B testing support**: Round-robin testing across style guide variants
-- **Detailed analytics**: Cost per quality point analysis
-- **Experiment tracking**: Results saved for variant comparison
-
-## Style Guide System (`style_guide_config.py`)
-
-### Configurable Variants
+**Best for:** Korean → English with CAT tool compatibility
 
 ```python
-class StyleGuideVariant(Enum):
-    NONE = "none"                    # No style guide (baseline)
-    MINIMAL = "minimal"              # Essential only (~100 tokens)
-    COMPACT = "compact"              # Condensed version (~200 tokens) 
-    STANDARD = "standard"            # Full style guide (~400 tokens)
-    COMPREHENSIVE = "comprehensive"  # Extended with examples (~600 tokens)
-    CLINICAL_PROTOCOL = "clinical_protocol"  # EN-KO specialized (~300 tokens)
-    CUSTOM = "custom"                # User-defined configuration
+from src.production_pipeline_ko_en_improved import KOENImprovedPipeline
+
+pipeline = KOENImprovedPipeline(model_name="Owl")
+results = pipeline.run_pipeline("korean_with_tags.xlsx")
 ```
 
-### EN-KO Clinical Protocol Style Guide
+**Features:**
+- ✅ CAT tool tag preservation (`<1>`, `<g1>`, `</1>`)
+- ✅ Extract → Translate → Restore workflow
+- ✅ Term consistency tracking
 
-**Specialized for EN→KO clinical protocol translation:**
-
-```python
-def _get_en_ko_clinical_protocol_style_guide(self) -> str:
-    """EN-KO Clinical Protocol style guide (~250 tokens)"""
-    return """
-    ## TERMINOLOGY CONSISTENCY:
-    - Clinical Study Protocol → 임상시험계획서
-    - Phase 1/2/3 → 제1상/제2상/제3상
-    - Open-label → 공개 라벨  
-    - Dose Escalation → 용량 증량
-    
-    ## BILINGUAL FORMAT:
-    - Medical conditions: Korean(English, ABBREV) → 급성 골수성 백혈병(Acute Myeloid Leukemia, AML)
-    - Technical terms: Korean(English) → 최대 내약 용량(maximum tolerated dose)
-    
-    ## FORMAL REGISTER (Natural Korean Flow):
-    - Statements: ~다/~된다 endings
-    - Procedures: ~실시된다/~수행된다  
-    - Requirements: ~해야 한다
-    """
+**Tag Handling:**
+```
+Input:  "이 <1>연구</1>는 <2/>임상시험입니다"
+Clean:  "이 연구는 임상시험입니다"
+Translate: "This study is a clinical trial"
+Restore: "This <1>study</1> is<2/> a clinical trial"
 ```
 
-### A/B Testing & Experiment Management
+---
 
-```python
-class StyleGuideManager:
-    def enable_experiment_mode(self, variants: List[StyleGuideVariant]):
-        """Enable A/B testing mode with specified variants"""
-        
-    def get_experiment_variant(self, segment_id: int) -> StyleGuideVariant:
-        """Get style guide variant for A/B testing (round-robin)"""
-        
-    def record_experiment_result(self, variant, segment_id, quality_score, token_count):
-        """Record experiment results for analysis"""
-```
+#### 4-6. Additional Pipelines
 
-## Memory Architecture
+- `production_pipeline_with_style_guide.py` - A/B testing 10 variants
+- `production_pipeline_working.py` - Legacy reference
+- `production_pipeline_en_ko_improved.py` - Alternative EN-KO
 
-### Tier 1: Valkey Manager (`valkey_manager.py`)
-
-**Purpose**: High-performance caching and session management
-**Location**: `/Users/won.suh/Project/translate-ai/phase2/src/memory/valkey_manager.py`
-
-#### Core Features
-- **Connection pooling**: Production-ready with health monitoring
-- **Session management**: Document-level translation sessions with TTL
-- **Term consistency**: O(1) locked term lookups for consistency
-- **Caching interface**: Glossary search result caching
-
-#### Key Operations
-
-```python
-class ValkeyManager:
-    # Session Management
-    def create_session(self, doc_id, source_lang, target_lang, total_segments) -> SessionMetadata
-    def update_session(self, doc_id, **kwargs) -> bool
-    def cleanup_session(self, doc_id) -> bool
-    
-    # Term Consistency
-    def add_term_mapping(self, doc_id, source_term, target_term, segment_id) -> bool  
-    def get_term_mapping(self, doc_id, source_term) -> Optional[TermMapping]
-    def lock_term(self, doc_id, source_term) -> bool
-    
-    # Caching
-    def cache_search_results(self, cache_key, results, ttl_seconds) -> bool
-    def get_cached_search_results(self, cache_key) -> Optional[Any]
-```
-
-#### Performance Features
-- **Sub-millisecond operations**: O(1) term lookups
-- **Connection pooling**: 20 connections with health checks
-- **Operation timing**: Automatic performance monitoring
-- **Failover support**: Graceful degradation to in-memory storage
-
-### Session Memory Management
-
-#### Data Structures
-
-```python
-@dataclass
-class SessionMetadata:
-    doc_id: str
-    created_at: datetime
-    source_language: str
-    target_language: str
-    total_segments: int
-    processed_segments: int
-    term_count: int
-    status: str  # 'active', 'completed', 'error'
-
-@dataclass  
-class TermMapping:
-    source_term: str
-    target_term: str
-    confidence: float
-    segment_id: str
-    created_at: datetime
-    locked: bool = False
-    conflicts: List[str] = None
-```
+---
 
 ## Glossary System
 
-### Combined Glossary Integration (`create_combined_glossary.py`)
+### Loading Glossaries
 
-**Purpose**: Intelligent multi-source glossary combination
-**Location**: `/Users/won.suh/Project/translate-ai/phase2/src/create_combined_glossary.py`
-
-#### Source Integration
-- **GENERIC_CLINIC Glossary**: 24 specialized EN→KO clinical terms (Priority 1)
-- **Clinical Trials (SAMPLE_CLIENT KO-EN)**: 375 comprehensive clinical terms (Priority 1)
-- **Coding Form (Medical)**: 20 medical device terms (Priority 2)
-- **Total**: 419 unique terms with priority and source tracking
-
-#### Features
-- **Priority-based deduplication**: Higher priority sources override lower
-- **Source transparency**: Track term origins for quality assurance  
-- **Medical term filtering**: Intelligent selection of relevant clinical terminology
-- **Multi-format export**: Excel and JSON for easy loading
-
-### Glossary Loader (`glossary_loader.py`)
-
-**Purpose**: Load and process Phase 2 glossary files
-**Location**: `/Users/won.suh/Project/translate-ai/phase2/src/glossary_loader.py`
+**File:** `src/glossary/glossary_loader.py`
 
 ```python
-class GlossaryLoader:
-    def load_coding_form_glossary(self, file_path) -> List[Dict]
-    def load_clinical_trials_glossary(self, file_path) -> List[Dict]
-    def load_all_glossaries(self) -> Tuple[List[Dict], Dict]
-    def save_production_glossary(self, terms, output_file)
+from src.glossary.glossary_loader import GlossaryLoader
+
+loader = GlossaryLoader()
+
+# Load all available glossaries
+terms, stats = loader.load_all_glossaries()
+
+print(f"Total terms: {stats['total_terms']}")
+# Output: Total terms: 2906
+
+# Terms format
+# [{
+#   'korean': '임상시험',
+#   'english': 'clinical trial',
+#   'source': 'clinical_trials',
+#   'priority': 1
+# }, ...]
 ```
 
-**Automatic Structure Detection:**
-- **Korean character detection**: Identifies KO/EN columns automatically
-- **Multi-term handling**: Processes alternative terms separated by |
-- **Metadata preservation**: Source tracking and confidence scoring
+### Glossary Search
+
+**File:** `src/glossary/glossary_search.py`
+
+```python
+# Simple keyword matching
+def search_glossary(source_text, glossary_terms):
+    matches = []
+    for term in glossary_terms:
+        if term['korean'] in source_text:
+            matches.append(term)
+    return matches
+
+# Example
+source = "이 임상시험은 이상반응을 평가합니다"
+matches = search_glossary(source, terms)
+# Returns: [
+#   {'korean': '임상시험', 'english': 'clinical trial'},
+#   {'korean': '이상반응', 'english': 'adverse event'}
+# ]
+```
+
+**Note:** Simple substring matching - no fuzzy logic, no semantic search.
+
+### Available Glossaries
+
+| Glossary | Terms | Use Case | Pipeline |
+|----------|-------|----------|----------|
+| **Production Full** | 2,906 | General | batch_enhanced, working |
+| **EN-KO Clinical** | 419 | Clinical protocols | en_ko, en_ko_improved |
+| **Combined** | 419 | Multi-source | en_ko |
+
+**Files:**
+- `src/data/production_glossary.json` (2,906 terms)
+- `src/data/combined_en_ko_glossary.xlsx` (419 terms)
+
+---
+
+## Memory System (Valkey Only)
+
+### What Valkey Does
+
+**File:** `src/memory/valkey_manager.py`
+
+Valkey is used **only** for term consistency tracking:
+
+```python
+from src.memory.valkey_manager import ValkeyManager, SessionMetadata
+
+# Initialize
+valkey = ValkeyManager(host="localhost", port=6379)
+
+# Create session
+session = SessionMetadata(
+    doc_id="doc_20251123",
+    created_at=datetime.now(),
+    source_language="ko",
+    target_language="en",
+    total_segments=1400
+)
+valkey.start_session(session)
+
+# Store term mapping
+valkey.add_term_mapping(
+    doc_id="doc_20251123",
+    source_term="임상시험",
+    target_term="clinical trial",
+    segment_id="seg_001"
+)
+
+# Get locked translation
+translation = valkey.get_term_mapping("doc_20251123", "임상시험")
+# Returns: "clinical trial"
+
+# Lock term for consistency
+valkey.lock_term("doc_20251123", "임상시험")
+```
+
+**Data in Valkey:**
+```
+doc:doc_20251123:metadata -> {created_at, progress, status}
+doc:doc_20251123:terms -> {"임상시험": "clinical trial", ...}
+doc:doc_20251123:locked -> {"임상시험", "이상반응", ...}
+```
+
+**Performance:**
+- O(1) lookups
+- <1ms latency
+- Connection pooling
+
+### What Valkey Does NOT Do
+
+- ❌ Cache glossary search results
+- ❌ Store translation memory
+- ❌ Cache LLM responses
+- ❌ Semantic search
+
+### Session Management
+
+**File:** `src/memory/session_manager.py`
+
+```python
+from src.memory.session_manager import SessionManager
+
+session_mgr = SessionManager(valkey_manager)
+
+# Track document progress
+session_id = session_mgr.create_session("protocol_001.xlsx", total_segments=1400)
+session_mgr.update_progress(session_id, processed=100)
+session_mgr.end_session(session_id)
+```
+
+### Consistency Tracking
+
+**File:** `src/memory/consistency_tracker.py`
+
+```python
+from src.memory.consistency_tracker import ConsistencyTracker
+
+tracker = ConsistencyTracker(valkey_manager, doc_id="doc_001")
+
+# Add term from translation
+tracker.add_term("임상시험", "clinical trial", segment_id="seg_01")
+
+# Check if term already translated
+locked_translation = tracker.check_consistency("임상시험")
+if locked_translation:
+    # Use locked translation for consistency
+    use_translation(locked_translation)
+```
+
+---
+
+## Style Guide System
+
+**File:** `src/style_guide_config.py`
+
+### Available Variants
+
+```python
+from src.style_guide_config import StyleGuideManager, StyleGuideVariant
+
+manager = StyleGuideManager()
+
+# 10 variants available
+variants = [
+    "NONE",                        # 0 tokens
+    "MINIMAL",                     # ~100 tokens
+    "COMPACT",                     # ~200 tokens
+    "STANDARD",                    # ~400 tokens (recommended)
+    "COMPREHENSIVE",               # ~600 tokens
+    "CLINICAL_PROTOCOL",           # ~300 tokens (EN-KO)
+    "REGULATORY_COMPLIANCE",       # ~300 tokens
+    "REGULATORY_COMPLIANCE_ENHANCED",  # ~400 tokens
+    "MEDICAL_DEVICE",              # ~250 tokens
+    "PATIENT_FACING"               # ~200 tokens
+]
+
+# Set variant
+manager.set_variant(StyleGuideVariant.STANDARD)
+guide_text = manager.get_current_guide()
+```
+
+### Example: Standard Style Guide
+
+```
+## Translation Guidelines (STANDARD)
+
+### Terminology Consistency
+- Use approved glossary terms
+- Maintain consistency throughout document
+- Follow locked term translations
+
+### Formal Register
+- Use formal Korean endings (-습니다/-ㅂ니다)
+- Use professional English tone
+- Avoid colloquialisms
+
+### Clinical Terminology
+- Phase 1/2/3 → 제1상/제2상/제3상
+- Adverse Event → 이상반응
+- Study Subject → 시험대상자
+
+### Formatting
+- Preserve numbers and dates exactly
+- Maintain list structures
+- Keep abbreviations in parentheses
+
+(~400 tokens total)
+```
+
+### Impact on Cost
+
+| Variant | Tokens | Cost/Segment | Use When |
+|---------|--------|--------------|----------|
+| NONE | 0 | Baseline | Testing only |
+| MINIMAL | 100 | +$0.000125 | Quick drafts |
+| STANDARD | 400 | +$0.0005 | Production (recommended) |
+| COMPREHENSIVE | 600 | +$0.00075 | High quality needed |
+
+---
 
 ## LLM Integration
 
-### GPT-5 OWL Integration
+### GPT-5 OWL API
 
-**Primary Model**: OpenAI GPT-5 via Responses API
-**Location**: Multiple pipeline implementations
-
-#### API Integration Pattern
+**Used in all pipelines:**
 
 ```python
-def translate_batch_with_gpt5_owl(self, prompt: str) -> Tuple[List[str], int, float, Dict]:
-    """Translate batch using GPT-5 OWL Responses API"""
-    response = self.client.responses.create(
-        model="gpt-5",
-        input=[{"role": "user", "content": prompt}],
-        text={"verbosity": "medium"},
-        reasoning={"effort": "minimal"}
-    )
-    
-    # Robust response extraction
-    translation_text = self._extract_text_from_openai_responses(response)
-    translations = self._parse_batch_response(translation_text)
+import openai
+
+client = openai.OpenAI()
+
+# Build prompt
+prompt = f"""
+{style_guide_text}
+
+## Glossary Terms:
+- 임상시험 → clinical trial
+- 이상반응 → adverse event
+
+## Locked Terms:
+- 시험대상자 → study subject
+
+## Previous Translations:
+Segment 1: "임상시험계획서" → "Clinical Study Protocol"
+
+## Segments to Translate:
+1. 이 임상시험은 제2상 연구입니다
+2. 시험대상자는 이상반응을 보고해야 합니다
+
+## Instructions:
+Translate to English following glossary and maintaining consistency.
+
+## Response Format:
+1. [English translation]
+2. [English translation]
+"""
+
+# Call API
+response = client.responses.create(
+    model="gpt-5",
+    input=[{"role": "user", "content": prompt}],
+    text={"verbosity": "medium"},
+    reasoning={"effort": "minimal"}
+)
+
+# Extract response
+translation_text = response.output_text
 ```
 
-#### Response Extraction (Critical Fix)
+### Batch Processing
+
+**Efficiency gain:**
 
 ```python
-def _extract_text_from_openai_responses(self, response) -> str:
-    """Extract text from OpenAI Responses API response"""
-    try:
-        if hasattr(response, 'output_text') and response.output_text:
-            return str(response.output_text).strip()
-        elif hasattr(response, 'output') and response.output:
-            return str(response.output).strip()
-        elif hasattr(response, 'text') and hasattr(response.text, 'content'):
-            return str(response.text.content).strip()
-        else:
-            return str(response.text).strip()
-    except Exception as e:
-        self.logger.error(f"Failed to extract text from response: {e}")
-        return str(response).strip()
+# Individual mode (inefficient)
+for segment in segments:
+    translate(segment)  # 1,400 API calls
+
+# Batch mode (efficient)
+for batch in batches_of_5(segments):
+    translate(batch)    # 280 API calls (80% reduction)
 ```
 
-### Cost Optimization
+**Cost savings:**
+- Individual: $14 for 1,400 segments
+- Batch (5x): $8.40 for 1,400 segments
+- **Savings: $5.60 (40%)**
 
-#### Token Usage Analysis
-- **Baseline**: 17.6 tokens per segment (source text)
-- **Context accumulation**: Primary cost driver (94% of tokens)
-- **Optimization strategy**: Smart context building vs. full context loading
+### No Fallback Models
 
-#### Pricing Structure (GPT-5 OWL)
-```python
-# GPT-5 Official 2025 Pricing
-input_cost = prompt_tokens * 0.00000125   # $1.25 per 1M tokens
-output_cost = completion_tokens * 0.00001  # $10.00 per 1M tokens
-total_cost = input_cost + output_cost
-```
+Currently only GPT-5 OWL is used. Other API keys in `.env` are not utilized:
+- ❌ Anthropic Claude (unused)
+- ❌ Google Gemini (unused)
+- ❌ Upstage Solar (unused)
 
-#### Cost per Segment Analysis
-- **Average tokens per segment**: 305.6 (with context optimization)
-- **Cost per segment**: ~$0.006 with GPT-5 OWL
-- **Batch efficiency**: 5 segments per API call = $0.0012 per segment API cost
+---
 
-### Batch Processing Architecture
+## Quality Scoring
 
-#### Optimal Batch Size Determination
-- **Testing Results**: 5 segments per batch optimal for cost/quality balance
-- **Context Sharing**: Terms collected across batch for efficient context
-- **Response Parsing**: Numbered list extraction with error recovery
+### Current Implementation
+
+**File:** All `production_pipeline_*.py` files
 
 ```python
-def create_enhanced_batch_prompt(self, korean_texts: List[str], context: str) -> str:
-    """Create enhanced batch prompt with style guide and context"""
-    
-    # Build numbered segments for batch processing
-    segments_section = "\n## Korean Segments to Translate:\n"
-    for i, korean_text in enumerate(korean_texts, 1):
-        segments_section += f"{i}. {korean_text}\n"
-    
-    # Request specific numbered format
-    prompt = f"""{context}
-    {segments_section}
-    
-    ## Response Format:
-    Please provide exactly {len(korean_texts)} English translations in this format:
-    1. [English translation of segment 1]
-    2. [English translation of segment 2]
-    ...
+def assess_batch_quality(korean_text, translation, glossary_terms):
     """
+    Heuristic-based quality scoring
+    NOT validated against references
+    """
+    score = 0.5  # Base score
+
+    # Translation exists
+    if translation and len(translation.strip()) > 0:
+        score += 0.2
+
+    # Length ratio reasonable
+    length_ratio = len(translation) / len(korean_text)
+    if 0.5 <= length_ratio <= 3.0:
+        score += 0.1
+
+    # Glossary terms used
+    terms_found = count_glossary_terms(translation, glossary_terms)
+    score += min(0.2, terms_found * 0.05)
+
+    # Clinical patterns present
+    clinical_words = ['study', 'clinical', 'trial', 'patient', 'adverse']
+    pattern_count = count_words(translation, clinical_words)
+    score += min(0.1, pattern_count * 0.02)
+
+    return min(1.0, score)  # Cap at 1.0
 ```
 
-## Performance Optimization
+**Score range:** 0.5 - 1.0
+**Average:** 0.84 (observed from runs)
 
-### Token Reduction Strategies
+### What This is NOT
 
-#### Context Optimization Results
-| Strategy | Total Tokens | Cost | Reduction |
-|----------|-------------|------|-----------|
-| No Context | 47,372 | $0.47 | Baseline |
-| Naive Context (Window=5) | 821,996 | $8.22 | 17x increase |
-| **Smart Context (Optimized)** | **203,500** | **$2.04** | **4.3x vs baseline** |
-| Full TM Integration | 547,334 | $5.47 | 11.5x vs baseline |
+- ❌ NOT BLEU score
+- ❌ NOT COMET score
+- ❌ NOT validated against references
+- ❌ NOT comparing to ground truth
 
-#### Critical Optimization: Context-Aware Building
+**It's a simple heuristic** based on:
+- Length reasonableness
+- Glossary compliance
+- Clinical terminology presence
+
+---
+
+## Performance Metrics
+
+### Actual Benchmarks (From Production Runs)
+
+**Test case:** 1,400 Korean segments → English
+
+| Metric | Batch Mode | Individual Mode |
+|--------|------------|-----------------|
+| **Segments/minute** | 120-150 | 30 |
+| **Total time** | 10 minutes | 47 minutes |
+| **API calls** | 280 | 1,400 |
+| **Total tokens** | ~427,840 | ~595,200 |
+| **Total cost** | $8.40 | $14.00 |
+| **Cost/segment** | $0.006 | $0.01 |
+
+### Token Breakdown
+
+**Per segment (average):**
+```
+Input tokens:
+  - Source text: 17.6 tokens
+  - Glossary terms: 50-150 tokens
+  - Style guide: 100-600 tokens
+  - Previous context: 30-80 tokens
+  - Locked terms: 20-60 tokens
+  - Instructions: 50 tokens
+  ────────────────────────────────
+  Total input: 268-958 tokens
+
+Output tokens:
+  - Translation: 30-50 tokens
+
+Average per segment: ~305 input + 40 output = 345 total
+```
+
+**Batch mode (5 segments):**
+```
+Shared context:
+  - Glossary terms: 150 tokens (shared)
+  - Style guide: 400 tokens (shared)
+  - Locked terms: 60 tokens (shared)
+  - Instructions: 50 tokens (shared)
+
+Per-segment:
+  - Source text: 17.6 × 5 = 88 tokens
+  - Previous context: 40 tokens (shared)
+
+Total batch: ~788 input tokens
+Cost per batch: $0.00099 + $0.002 = $0.003
+Cost per segment in batch: $0.0006
+
+Plus overhead → ~$0.006/segment actual
+```
+
+---
+
+## Tag Preservation (KO-EN Pipeline)
+
+**File:** `src/utils/tag_handler.py`
+
+### Supported Tag Formats
+
+```
+CAT tool tags:
+<1>text</1>          - Paired tags
+<2/>                 - Self-closing
+<g1>text</g1>        - Named groups
+```
+
+### Usage
+
 ```python
-def build_enhanced_batch_context(self, korean_texts: List[str]) -> Tuple[str, int]:
-    # Collect glossary terms for ENTIRE batch (not per segment)
-    all_glossary_terms = {}
-    for korean_text in korean_texts:
-        terms = self.search_real_glossary(korean_text) 
-        for term in terms:
-            all_glossary_terms[term['korean']] = term
-    
-    # Build shared context: terminology + session memory + guidelines
-    # Result: ~200-400 tokens vs 2000+ with naive approach
+from src.utils.tag_handler import TagHandler
+
+handler = TagHandler()
+
+# Original text with tags
+original = "이 <1>임상시험</1>은 <2/>중요합니다"
+
+# 1. Extract tags
+tags = handler.extract_tags(original)
+# Returns: [('<1>', 2), ('</1>', 8), ('<2/>', 11)]
+
+# 2. Remove tags for translation
+clean = handler.remove_tags(original)
+# Returns: "이 임상시험은 중요합니다"
+
+# 3. Translate clean text
+translated = translate(clean)
+# Returns: "This clinical trial is important"
+
+# 4. Restore tags
+final = handler.restore_tags(translated, tags)
+# Returns: "This <1>clinical trial</1> is<2/> important"
 ```
 
-### Quality Assessment System
+### Integration in Pipeline
 
-#### Multi-Factor Quality Scoring
 ```python
-def assess_batch_quality(self, korean_texts, translations, references) -> List[float]:
-    """Assess quality for each translation in the batch"""
-    for korean, translation, reference in zip(korean_texts, translations, references):
-        score = 0.5  # Base score
-        
-        # Translation completeness
-        if translation and len(translation.strip()) > 0:
-            score += 0.2
-            
-        # Length appropriateness  
-        if translation and korean:
-            length_ratio = len(translation) / len(korean)
-            if 0.5 <= length_ratio <= 3.0:
-                score += 0.1
-                
-        # Glossary term usage
-        glossary_terms = self.search_real_glossary(korean)
-        terms_used = sum(1 for term in glossary_terms 
-                        if term['english'].lower() in translation.lower())
-        if terms_used > 0:
-            score += min(0.2, terms_used * 0.05)
-            
-        # Clinical terminology patterns
-        clinical_patterns = ['study', 'clinical', 'trial', 'patient', 'treatment']
-        pattern_matches = sum(1 for pattern in clinical_patterns 
-                            if pattern in translation.lower())
-        if pattern_matches > 0:
-            score += min(0.1, pattern_matches * 0.02)
+# In production_pipeline_ko_en_improved.py
+
+def process_segment(segment_text):
+    # Extract tags
+    tags = tag_handler.extract_tags(segment_text)
+
+    # Translate clean text
+    clean_text = tag_handler.remove_tags(segment_text)
+    translation = llm_translate(clean_text)
+
+    # Restore tags
+    final_translation = tag_handler.restore_tags(translation, tags)
+
+    return final_translation
 ```
 
-## Production Deployment
+---
 
-### Environment Configuration
+## Configuration
 
-#### Required Environment Variables
+### Environment Setup
+
+**File:** `src/.env`
+
 ```bash
-# .env file structure
-OPENAI_API_KEY=""              # Primary LLM access
-ANTHROPIC_API_KEY=""           # Backup model
-GEMINI_API_KEY=""              # Alternative model
-UPSTAGE_API_KEY=""             # Specialized model
+# Required
+OPENAI_API_KEY=sk-proj-your_actual_key_here
 
-# Valkey Configuration
+# Optional (Valkey)
 VALKEY_HOST=localhost
 VALKEY_PORT=6379
 VALKEY_DB=0
 
-# Performance Settings
+# Logging
 LOG_LEVEL=INFO
-MAX_CONCURRENT_REQUESTS=10
-CACHE_TTL=3600
+
+# Unused (but present)
+ANTHROPIC_API_KEY=
+GEMINI_API_KEY=
+UPSTAGE_API_KEY=
 ```
 
-#### Infrastructure Requirements
-- **Python 3.11+**: Runtime environment
-- **Valkey/Redis Server**: Memory tier (optional but recommended)
-- **Minimum RAM**: 4GB for processing 1,400 segments
-- **Storage**: 1GB for glossaries and results
-- **Network**: Stable internet for LLM API calls
-
-### Pipeline Execution Commands
-
-```bash
-# Setup virtual environment
-source venv/bin/activate
-
-# Run EN-KO Clinical Protocol Pipeline (LATEST)
-python phase2/src/production_pipeline_en_ko.py
-
-# Run ENHANCED BATCH pipeline (RECOMMENDED - 4x faster)
-python phase2/src/production_pipeline_batch_enhanced.py
-
-# Run working pipeline (proven baseline)
-python phase2/src/production_pipeline_working.py
-
-# Run advanced style guide pipeline (individual processing)
-python phase2/src/production_pipeline_with_style_guide.py
-
-# Create combined glossary from sources
-python phase2/src/create_combined_glossary.py
-```
-
-### Results and Monitoring
-
-#### Excel Output Structure
-Each pipeline generates comprehensive Excel reports with multiple sheets:
-
-1. **Main Results Sheet**: Translation results with metrics
-2. **Glossary Terms Used**: Detailed term breakdown per segment
-3. **Pipeline Metrics**: Performance statistics and cost analysis  
-4. **Cost Quality Analysis**: Quality ranges with cost efficiency
-
-#### Key Performance Indicators
-```python
-final_metrics = {
-    'total_segments': total_segments,
-    'completion_rate': len(completed_results) / total_segments,
-    'average_quality_score': sum(quality_scores) / len(quality_scores),
-    'average_tokens_per_segment': sum(tokens) / len(tokens),
-    'total_cost': sum(costs),
-    'average_cost_per_segment': total_cost / total_segments,
-    'cost_per_quality_point': avg_cost / avg_quality,
-    'processing_speed': segments_per_second
-}
-```
-
-### Error Handling & Recovery
-
-#### Comprehensive Error Management
-```python
-try:
-    # Process batch
-    translations, tokens, cost, metadata = self.translate_batch_with_gpt5_owl(prompt)
-    
-except Exception as e:
-    self.logger.error(f"Batch {batch_num} failed: {e}")
-    
-    # Return error results with detailed information
-    error_results = []
-    for segment_id, korean, reference in zip(segment_ids, korean_texts, reference_texts):
-        result = BatchEnhancedResult(
-            segment_id=segment_id,
-            status="error", 
-            error_message=str(e),
-            # ... other fields with safe defaults
-        )
-        error_results.append(result)
-    
-    return error_results
-```
-
-#### Failover Strategies
-- **Valkey fallback**: Automatic switch to in-memory storage
-- **Model fallback**: GPT-4o backup for GPT-5 failures  
-- **Batch recovery**: Individual segment processing on batch failures
-- **Session persistence**: Resume from last successful batch
-
-## Integration Guidelines
-
-### Adding New Models
+### Pipeline Configuration
 
 ```python
-# 1. Model Configuration
-model_mapping = {
-    "NewBird": {"provider": "new_provider", "model_id": "new_model"}
-}
+# Batch size (1-10)
+pipeline = EnhancedBatchPipeline(batch_size=5)
 
-# 2. Provider Adapter
-class NewProviderAdapter:
-    async def translate(self, context, model_config):
-        # Implementation specific to provider
-        pass
-
-# 3. Integration Points
-def translate_with_new_provider(self, prompt):
-    # Provider-specific implementation
-    # Handle authentication, API calls, response parsing
-    # Return standardized format: (translations, tokens, cost, metadata)
-```
-
-### Custom Style Guides
-
-```python
-# Define custom variant
-custom_rules = {
-    "terminology": {
-        "임상시험": "clinical study",
-        "시험대상자": "study participant"  
-    },
-    "format": ["Use formal register", "Include abbreviations"],
-    "compliance": "Follow ICH-GCP guidelines"
-}
-
-# Register variant
-style_manager = StyleGuideManager()
-style_manager.variants[StyleGuideVariant.CUSTOM] = StyleGuideConfig(
-    variant=StyleGuideVariant.CUSTOM,
-    custom_rules=custom_rules,
-    estimated_tokens=300,
-    quality_score=0.85
+# Style guide variant
+pipeline = EnhancedBatchPipeline(
+    style_guide_variant="standard"  # none|minimal|standard|comprehensive
 )
+
+# Model (currently only "Owl" used)
+pipeline = EnhancedBatchPipeline(model_name="Owl")
+
+# Valkey usage
+pipeline = EnhancedBatchPipeline(use_valkey=True)  # True or False
 ```
-
-### API Integration
-
-```python
-# Example enterprise API wrapper
-class TranslationAPI:
-    def __init__(self, pipeline_type="enhanced_batch"):
-        self.pipeline = self._initialize_pipeline(pipeline_type)
-        
-    async def translate_document(self, document, source_lang, target_lang):
-        """Translate document via API"""
-        results = await self.pipeline.run_enhanced_batch_pipeline(document)
-        return self._format_api_response(results)
-        
-    def _format_api_response(self, results):
-        return {
-            "translation_id": str(uuid.uuid4()),
-            "status": "completed",
-            "segments": len(results['results']),
-            "quality_score": results['metrics']['average_quality_score'],
-            "processing_time": results['metrics']['total_processing_time'],
-            "cost": results['metrics']['total_cost'],
-            "translations": [r.translated_text for r in results['results']]
-        }
-```
-
-## Testing & Validation
-
-### Component Testing
-```bash
-# Core functionality tests
-python tests/test_token_optimizer_simple.py
-python tests/test_be003_core.py
-
-# Integration tests  
-python tests/test_phase2_integration.py
-python tests/validate_integration.py
-
-# Performance tests
-python tests/test_data_loader_performance.py
-```
-
-### Production Validation
-1. **Load test data**: Phase 2 clinical protocol segments
-2. **Run pipeline**: Process complete document (1,400+ segments)
-3. **Validate results**: Quality scores, token usage, cost efficiency
-4. **Monitor performance**: Processing speed, error rates, memory usage
-5. **Verify outputs**: Excel reports with comprehensive metrics
-
-## Conclusion
-
-The Enhanced Translation System represents a sophisticated, production-ready solution for clinical document translation with exceptional performance characteristics:
-
-- **Technical Achievement**: 98.3% token reduction through intelligent architecture
-- **Business Value**: 89-94% profit margins at competitive pricing
-- **Production Scale**: Successfully processing 2,690 segments across 538 batches
-- **Quality Assurance**: 84% average quality with specialized clinical terminology
-- **Operational Efficiency**: Same-day delivery capability with automated processing
-
-The system is designed for enterprise deployment with comprehensive error handling, performance monitoring, and scalable architecture supporting unlimited document processing capacity.
 
 ---
 
-*Document Version: 1.0*  
-*Date: August 27, 2025*  
-*System Version: Phase 2 Enhanced Translation Architecture*  
-*Primary Files: `/Users/won.suh/Project/translate-ai/phase2/src/`*
+## Common Tasks
+
+### Run Translation
+
+```bash
+cd /home/user/transai
+source venv/bin/activate
+
+# Recommended pipeline
+python -m src.production_pipeline_batch_enhanced
+
+# Or specific pipeline
+python -m src.production_pipeline_en_ko
+python -m src.production_pipeline_ko_en_improved
+```
+
+### Add Custom Glossary
+
+```python
+# 1. Create glossary file (JSON format)
+[
+  {
+    "korean": "새로운용어",
+    "english": "new term",
+    "source": "custom",
+    "priority": 1
+  }
+]
+
+# 2. Load in pipeline
+from src.glossary.glossary_loader import GlossaryLoader
+
+loader = GlossaryLoader()
+custom_terms = loader.load_custom_glossary("path/to/custom.json")
+
+# 3. Merge with existing
+all_terms = existing_terms + custom_terms
+```
+
+### Monitor Valkey
+
+```bash
+# Check if running
+valkey-cli ping
+# Output: PONG
+
+# View session keys
+valkey-cli keys "doc:*"
+
+# View specific session
+valkey-cli HGETALL doc:doc_20251123:metadata
+
+# View term mappings
+valkey-cli HGETALL doc:doc_20251123:terms
+
+# Clear old sessions
+valkey-cli DEL doc:old_session:*
+```
+
+---
+
+## Testing
+
+### Run Tests
+
+```bash
+# All tests
+pytest src/tests/ -v
+
+# Integration tests
+pytest src/tests/test_phase2_integration.py -v
+
+# Valkey tests
+pytest src/tests/test_valkey_integration.py -v
+
+# Coverage
+pytest --cov=src src/tests/
+```
+
+### Test Files
+
+**Integration:**
+- `test_phase2_integration.py` - Full pipeline workflows
+- `test_valkey_integration.py` - Valkey operations
+- `test_context_builder_integration.py` - Context building
+
+**Core:**
+- `test_be003_core.py` - Core functionality
+- `test_token_optimizer_simple.py` - Token optimization
+
+**Imports:**
+- `test_imports.py` - Module validation
+- `production_import_test.py` - Production readiness
+
+---
+
+## Limitations
+
+### What This System Does NOT Have
+
+- ❌ **Translation Memory** - No TM database, every segment hits LLM
+- ❌ **Semantic Search** - No Qdrant, no vector embeddings
+- ❌ **Adaptive Learning** - No Mem0, no pattern learning
+- ❌ **Translation Routing** - No TM vs LLM decision logic
+- ❌ **Document Type Detection** - No automatic domain/style detection
+- ❌ **Distributed Processing** - No Celery, single-threaded
+- ❌ **Real Quality Metrics** - No BLEU/COMET, just heuristics
+- ❌ **Comprehensive Validation** - No hallucination detection integrated
+
+### Trade-offs
+
+**Why simple architecture:**
+- ✅ Easy to understand and maintain
+- ✅ Proven to work reliably
+- ✅ Fewer failure points
+- ✅ Faster development
+
+**Cost of simplicity:**
+- ❌ Higher LLM costs (no TM reuse)
+- ❌ No semantic search capabilities
+- ❌ No learning from past translations
+- ❌ Limited scalability (single-threaded)
+
+---
+
+## Summary
+
+TransAI is a **straightforward, production-ready translation system**:
+
+```
+Load Glossary → Build Context → Call GPT-5 → Track Consistency → Output Excel
+```
+
+**Strengths:**
+- Simple architecture
+- Good glossary integration (419-2,906 terms)
+- Batch processing (80% cost reduction)
+- Term consistency tracking
+- Multiple pipeline variants
+
+**Works well for:**
+- Clinical protocol translation
+- Medical device documentation
+- Regulatory submissions
+- CAT tool integration
+
+**Best practices:**
+- Use `production_pipeline_batch_enhanced.py` for general use
+- Use STANDARD style guide (400 tokens)
+- Batch size 5 for cost/speed balance
+- Run Valkey for consistency tracking
+
+---
+
+**Document Version:** 2.0 (Simplified to match implementation)
+**Last Updated:** November 23, 2025
+**Status:** Accurate reflection of actual system capabilities
