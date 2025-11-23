@@ -1,6 +1,6 @@
-# TransAI: Intelligent Medical Document Translation System
+# TransAI: Medical Document Translation System
 
-> Achieve 98.3% token reduction while maintaining high translation quality for clinical and medical device documentation.
+> Glossary-enhanced LLM translation for clinical trials and medical device documentation with 80% API call reduction through batch processing.
 
 ## 📋 Quick Links
 
@@ -11,20 +11,20 @@
 
 ## 🚀 Overview
 
-TransAI is a production-ready medical document translation system specializing in clinical trials, pharmaceutical, and medical device documentation translation. Built with intelligent context optimization, efficient caching, and OpenAI's latest models.
+TransAI is a production-ready medical document translation system specializing in clinical trials, pharmaceutical, and medical device documentation translation. Built with glossary-enhanced prompting, term consistency tracking (Valkey), and GPT-5 OWL.
 
 ## 📂 Project Structure
 
 ```
 transai/
 ├── src/                                  # Application source code
-│   ├── production_pipeline_*.py           # 5 translation pipelines (entry points)
+│   ├── production_pipeline_*.py           # 6 translation pipelines (entry points)
 │   ├── glossary/                         # Glossary management system
-│   │   ├── glossary_loader.py            # Generic glossary loader (refactored)
-│   │   ├── glossary_search.py            # Fuzzy term matching
+│   │   ├── glossary_loader.py            # Generic glossary loader
+│   │   ├── glossary_search.py            # Keyword term matching
 │   │   ├── create_combined_glossary.py   # Glossary utilities
 │   │   └── glossary_config.example.yaml  # Configuration template
-│   ├── memory/                           # 3-tier caching layer (Valkey/Redis)
+│   ├── memory/                           # Term consistency (Valkey cache only)
 │   │   ├── valkey_manager.py             # Valkey integration
 │   │   ├── session_manager.py            # Session tracking
 │   │   ├── consistency_tracker.py        # Term consistency
@@ -130,13 +130,13 @@ See [GIT_SECURITY_CHECKLIST.md](docs/07_project_management/GIT_SECURITY_CHECKLIS
 
 | Metric | Value |
 |--------|-------|
-| Token Reduction | 98.3% |
-| Processing Speed | 720 words/minute |
-| Quality Score | 84% average |
-| Cache Latency | <1ms |
-| Batch Size | 5 segments |
-| Batch Time | 2.5 seconds |
-| Fallback Support | GPT-5 → GPT-4o |
+| API Call Reduction | 80% (batch processing) |
+| Processing Speed | 120-150 segments/minute |
+| Quality Score | 0.84 average (heuristic) |
+| Valkey Latency | <1ms (term lookups) |
+| Batch Size | 5 segments per API call |
+| Batch Time | ~2.5 seconds |
+| LLM Model | GPT-5 OWL (primary only) |
 
 ## 🎯 Usage Examples
 
