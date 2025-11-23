@@ -1,0 +1,78 @@
+# Glossary Configuration - Example File
+# This file defines which glossary sources to load and how to map their columns
+# Copy this file to glossary_config.yaml and customize for your setup
+
+version: "1.0"
+default_language_pair: "ko-en"
+
+# Glossary sources to load
+sources:
+  # Example 1: Coding Form glossary with explicit column mapping
+  - name: "Coding Form"
+    type: "excel"
+    path: "data/glossaries/coding_form.xlsx"
+    sheet: "Terms"
+    enabled: true
+    mapping:
+      korean: "KR_SOC_27.0"        # Korean term column
+      english: "SOC_27.0"          # English term column
+      category: "Category"         # Optional: domain/category
+    confidence_score: 0.90         # High confidence for medical terms
+
+  # Example 2: Clinical Trials with alternative terms (pipe-separated)
+  - name: "Clinical Trials"
+    type: "excel"
+    path: "data/glossaries/clinical_trials.xlsx"
+    sheet: "Clinical"
+    enabled: true
+    mapping:
+      korean: "KO"
+      english: "EN"
+      category: "Domain"
+    confidence_score: 0.95         # Very high confidence
+    alternatives_separator: "|"    # Terms can be: "term1|term2|term3"
+
+  # Example 3: JSON format (auto-detected structure)
+  - name: "Custom Domain"
+    type: "json"
+    path: "data/glossaries/custom_domain.json"
+    enabled: true
+    confidence_score: 0.85
+
+  # Example 4: CSV format with custom mapping
+  - name: "User Glossary"
+    type: "csv"
+    path: "data/glossaries/user_terms.csv"
+    enabled: true
+    mapping:
+      korean: "korean_term"
+      english: "english_term"
+      category: "domain"
+      frequency: "usage_frequency"
+    confidence_score: 0.80
+
+  # Example 5: Disabled source (won't be loaded)
+  - name: "Archived Terms"
+    type: "excel"
+    path: "data/glossaries/archived.xlsx"
+    enabled: false  # This source will be skipped
+
+# Search engine configuration
+search:
+  min_term_length: 2          # Minimum characters for a term
+  fuzzy_threshold: 0.60       # Fuzzy matching threshold (0.0-1.0)
+  enable_preprocessing: true  # Clean text before searching
+  cache_enabled: true         # Enable Valkey caching
+  cache_ttl: 3600            # Cache time-to-live in seconds
+
+# Deduplication settings
+deduplication:
+  enabled: true               # Remove duplicate terms
+  keep_first: true           # Keep first occurrence or highest confidence
+  merge_alternatives: true   # Merge alternative terms from duplicates
+
+# Output settings
+output:
+  default_format: "json"      # Default output format (json, excel, csv)
+  include_metadata: true      # Include glossary metadata in output
+  include_alternatives: true  # Include alternative terms in output
