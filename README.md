@@ -4,10 +4,10 @@
 
 ## 📋 Quick Links
 
-- **Getting Started:** [Setup Checklist](docs/SETUP_CHECKLIST.md)
-- **Full Documentation:** [Complete README](docs/README.md)
-- **Migration Info:** [Migration Summary](docs/MIGRATION_SUMMARY.md)
-- **System Status:** [Completion Report](docs/COMPLETION_REPORT.md)
+- **📖 Getting Started:** [01_getting_started/](docs/01_getting_started/INDEX.md)
+- **📚 Full Documentation:** [docs/README.md](docs/README.md)
+- **📊 System Status:** [Completion Report](docs/07_project_management/COMPLETION_REPORT.md)
+- **🔐 Security Info:** [Git Security Checklist](docs/07_project_management/GIT_SECURITY_CHECKLIST.md)
 
 ## 🚀 Overview
 
@@ -17,35 +17,50 @@ TransAI is a production-ready medical document translation system specializing i
 
 ```
 transai/
-├── src/                           # Application source code
-│   ├── production_pipeline_*.py    # Translation pipelines (main entry points)
-│   ├── glossary_loader.py          # Glossary loading & processing
-│   ├── glossary_search.py          # Fuzzy term matching
-│   ├── memory/                     # Caching layer (Valkey/Redis)
-│   ├── utils/                      # Tag handler, segment filter
-│   ├── clinical_protocol_system/   # Clinical specialization modules
-│   ├── tests/                      # Test suite (pytest)
-│   ├── data/                       # Glossaries & test data
-│   ├── requirements.txt            # Python dependencies
-│   └── .env                        # Configuration (TEMPLATE)
-├── docs/                           # All documentation (20 files)
-│   ├── README.md                   # Complete user guide (547 lines)
-│   ├── SETUP_CHECKLIST.md          # Installation guide (400+ lines)
-│   ├── MIGRATION_SUMMARY.md        # Migration details
-│   ├── COMPLETION_REPORT.md        # Project completion report
-│   └── [16+ technical docs]        # Architecture, implementation, etc.
-├── README.md                       # This file (project overview)
-└── .git/                           # Version control
+├── src/                                  # Application source code
+│   ├── production_pipeline_*.py           # 5 translation pipelines (entry points)
+│   ├── glossary/                         # Glossary management system
+│   │   ├── glossary_loader.py            # Generic glossary loader (refactored)
+│   │   ├── glossary_search.py            # Fuzzy term matching
+│   │   ├── create_combined_glossary.py   # Glossary utilities
+│   │   └── glossary_config.example.yaml  # Configuration template
+│   ├── memory/                           # 3-tier caching layer (Valkey/Redis)
+│   │   ├── valkey_manager.py             # Valkey integration
+│   │   ├── session_manager.py            # Session tracking
+│   │   ├── consistency_tracker.py        # Term consistency
+│   │   └── cached_glossary_search.py     # Cached searches
+│   ├── utils/                            # Utilities
+│   │   ├── tag_handler.py                # CAT tool tag preservation
+│   │   └── segment_filter.py             # Content filtering
+│   ├── clinical_protocol_system/         # Medical specialization
+│   ├── tests/                            # Test suite (11+ test files)
+│   ├── data/                             # Glossaries & test data
+│   ├── style_guide_config.py             # 10 translation style variants
+│   ├── requirements.txt                  # Dependencies
+│   └── .env.example                      # Configuration template
+│
+├── docs/                                 # Organized documentation (29 files)
+│   ├── 01_getting_started/               # Onboarding (3 docs + INDEX)
+│   ├── 02_architecture/                  # System design (4 docs + INDEX)
+│   ├── 03_core_features/                 # Feature usage (5 docs + INDEX)
+│   ├── 04_glossary_and_terminology/      # Glossary guide (4 docs + INDEX)
+│   ├── 05_advanced_topics/               # Advanced features (5 docs + INDEX)
+│   ├── 06_performance_and_optimization/  # Performance (4 docs + INDEX)
+│   ├── 07_project_management/            # Operations (3 docs + INDEX)
+│   └── README.md                         # Documentation hub
+│
+├── README.md                             # This file (project overview)
+└── .git/                                 # Version control
 ```
 
 ## ⚡ Quick Start (5 minutes)
 
 ### 1. Set Up Python Environment
 ```bash
-cd transai/src
+cd transai
 python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r src/requirements.txt
 ```
 
 ### 2. Start Valkey Server
@@ -59,28 +74,41 @@ docker run -d -p 6379:6379 valkey/valkey
 
 ### 3. Configure API Keys
 ```bash
-# Edit src/.env
-OPENAI_API_KEY=your_actual_openai_key_here
+# Create src/.env (copy from src/.env.example)
+cp src/.env.example src/.env
+
+# Edit and add your OpenAI API key
+OPENAI_API_KEY=sk-proj-your_actual_key_here
 ```
 
 ### 4. Run First Translation
-```bash
-# See docs/README.md for code examples
+```python
+from src.production_pipeline_batch_enhanced import EnhancedBatchPipeline
+
+pipeline = EnhancedBatchPipeline(style_guide="STANDARD")
+results = pipeline.run_enhanced_batch_pipeline(
+    input_file="path/to/your/document.xlsx"
+)
+print(f"Quality Score: {results['avg_quality_score']:.2f}")
 ```
 
-## 📚 Documentation
+For more examples, see [docs/README.md](docs/README.md)
 
-All documentation is consolidated in the `docs/` folder:
+## 📚 Documentation Structure
 
-| Document | Purpose | Audience |
-|----------|---------|----------|
-| [README.md](docs/README.md) | Complete user guide with examples | Everyone |
-| [SETUP_CHECKLIST.md](docs/SETUP_CHECKLIST.md) | Step-by-step setup instructions | New users |
-| [TECHNICAL_IMPLEMENTATION.md](docs/TECHNICAL_IMPLEMENTATION.md) | Architecture & implementation details | Developers |
-| [TAG_PRESERVATION_IMPLEMENTATION.md](docs/TAG_PRESERVATION_IMPLEMENTATION.md) | CAT tool tag handling | Advanced users |
-| [VALKEY_INTEGRATION_SUMMARY.md](docs/VALKEY_INTEGRATION_SUMMARY.md) | Caching architecture | DevOps/Developers |
+Documentation is organized into 7 categories with 29 files total. Each category has an INDEX.md for easy navigation.
 
-**Additional Technical Docs:** 13 more detailed analysis and specification documents available in `docs/`
+| Category | Purpose | Files |
+|----------|---------|-------|
+| **[01_getting_started](docs/01_getting_started/INDEX.md)** | Setup & onboarding | 3 docs |
+| **[02_architecture](docs/02_architecture/INDEX.md)** | System design & diagrams | 4 docs |
+| **[03_core_features](docs/03_core_features/INDEX.md)** | How to use the system | 5 docs |
+| **[04_glossary_and_terminology](docs/04_glossary_and_terminology/INDEX.md)** | Manage glossaries | 4 docs |
+| **[05_advanced_topics](docs/05_advanced_topics/INDEX.md)** | Advanced features | 5 docs |
+| **[06_performance_and_optimization](docs/06_performance_and_optimization/INDEX.md)** | Testing & optimization | 4 docs |
+| **[07_project_management](docs/07_project_management/INDEX.md)** | Operations & security | 3 docs |
+
+**Start here:** [docs/README.md](docs/README.md) - Main documentation hub with quick navigation
 
 ## 🔑 Supported Models
 
@@ -93,10 +121,10 @@ All documentation is consolidated in the `docs/` folder:
 
 ✅ **No API Keys** - All replaced with placeholders
 ✅ **No Customer Data** - Replaced with synthetic samples
-✅ **No Proprietary Docs** - Pricing/margin documents removed
+✅ **No Proprietary Docs** - Only open-source friendly files
 ✅ **Git Ready** - Safe to commit immediately
 
-See [MIGRATION_SUMMARY.md](docs/MIGRATION_SUMMARY.md) for security details.
+See [GIT_SECURITY_CHECKLIST.md](docs/07_project_management/GIT_SECURITY_CHECKLIST.md) for security best practices.
 
 ## 📊 System Specifications
 
@@ -160,7 +188,7 @@ See **[docs/README.md](docs/README.md)** for more examples.
 pytest src/tests/ -v
 
 # Run specific test
-pytest src/tests/test_glossary_loader.py -v
+pytest src/tests/test_valkey_integration.py -v
 
 # With coverage
 pytest --cov=src src/tests/
@@ -168,7 +196,8 @@ pytest --cov=src src/tests/
 
 **Sample Data Available:**
 - `src/data/sample_glossary.json` - 15 medical terms + abbreviations
-- `src/data/sample_test_data.json` - 15 synthetic translation segments
+- `src/data/sample_test_data.json` - 15 synthetic translation segments (KO↔EN)
+- `src/data/combined_en_ko_glossary.xlsx` - 419 clinical terms
 
 ## 🐛 Troubleshooting
 
@@ -186,10 +215,10 @@ valkey-cli ping  # Should return: PONG
 ### Import errors
 ```bash
 # Reinstall dependencies
-pip install --upgrade -r requirements.txt
+pip install --upgrade -r src/requirements.txt
 ```
 
-See [SETUP_CHECKLIST.md](docs/SETUP_CHECKLIST.md) for more troubleshooting.
+See [01_getting_started/SETUP_CHECKLIST.md](docs/01_getting_started/SETUP_CHECKLIST.md) for more troubleshooting.
 
 ## 🔄 Pipeline Variants
 
@@ -217,31 +246,32 @@ Ready for:
 
 ## 📞 Getting Help
 
-1. **Start:** [Setup Checklist](docs/SETUP_CHECKLIST.md) (10-step process)
-2. **Learn:** [Complete README](docs/README.md) (547 lines, all topics)
-3. **Explore:** [Technical Docs](docs/) (20 documents)
+1. **Start:** [Getting Started Guide](docs/01_getting_started/INDEX.md) - Setup & onboarding
+2. **Learn:** [Complete README](docs/README.md) - All topics with examples
+3. **Explore:** [Documentation Hub](docs/) - 29 documents organized by category
 
 ## 🎉 Status
 
 **Current Status:** ✅ Production Ready
 
-- Architecture: Proven in production
-- Code Quality: High with error handling
-- Documentation: Comprehensive (20 files)
-- Testing: Full test suite included
-- Security: Zero secrets/sensitive data
-- Ready for: Immediate deployment
+- **Architecture:** Proven and tested
+- **Code Quality:** High with comprehensive error handling
+- **Documentation:** Organized & comprehensive (29 files in 7 categories)
+- **Testing:** Full test suite with 11+ test files
+- **Security:** Zero secrets, no sensitive data
+- **Glossary System:** Refactored to be generic and flexible
+- **Ready for:** Immediate deployment
 
 ## 📝 License
 
 [Add your license here]
 
-## 📧 Contact
+## 📧 Support & Learning
 
-For questions or issues:
-1. Check [SETUP_CHECKLIST.md](docs/SETUP_CHECKLIST.md) - Troubleshooting section
-2. Review [docs/README.md](docs/README.md) - Comprehensive guide
-3. See [docs/](docs/) - Technical documentation
+For questions, issues, or to learn more:
+1. Check [Troubleshooting](docs/01_getting_started/SETUP_CHECKLIST.md#troubleshooting) in Getting Started guide
+2. Review [Complete README](docs/README.md) - Comprehensive usage guide
+3. Browse [Documentation Categories](docs/README.md#documentation-structure) - Find what you need
 
 ---
 
@@ -249,4 +279,8 @@ For questions or issues:
 **Last Updated:** November 23, 2025
 **Status:** Production Ready ✅
 
-**Start with:** [Setup Checklist](docs/SETUP_CHECKLIST.md) → [Complete README](docs/README.md)
+**Quick Links:**
+- 🚀 [Getting Started](docs/01_getting_started/INDEX.md)
+- 📖 [Documentation Hub](docs/README.md)
+- 🏗️ [Architecture Overview](docs/02_architecture/INDEX.md)
+- 💻 [How to Use](docs/03_core_features/INDEX.md)

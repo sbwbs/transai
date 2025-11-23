@@ -12,19 +12,102 @@ Phase 2 is an advanced medical and clinical document translation system that ach
 - 84% average translation quality score
 - Support for tag preservation (CAT tool integration)
 
+## 📂 Documentation Structure
+
+All documentation is organized into 7 categories. Navigate by category or use the quick links below.
+
+### Documentation Categories
+
+```
+docs/
+├── 01_getting_started/              ← Start here!
+│   ├── INDEX.md                     (Read first for navigation)
+│   ├── SETUP_CHECKLIST.md
+│   └── FILE_ORGANIZATION_GUIDE.md
+│
+├── 02_architecture/                 ← Understand the system
+│   ├── INDEX.md
+│   ├── PHASE2_MVP_ARCHITECTURE.md
+│   ├── PHASE2_ARCHITECTURE_DIAGRAM.md
+│   └── IMPLEMENTATION_BLUEPRINT.md
+│
+├── 03_core_features/                ← Learn to use
+│   ├── INDEX.md
+│   ├── TRANSLATION_PIPELINE_STEPBYSTEP.md
+│   ├── VALKEY_INTEGRATION_SUMMARY.md
+│   ├── TAG_PRESERVATION_IMPLEMENTATION.md
+│   └── TECHNICAL_IMPLEMENTATION.md
+│
+├── 04_glossary_and_terminology/     ← Manage terms
+│   ├── INDEX.md
+│   ├── GLOSSARY_SYSTEM.md
+│   ├── HOW_TO_ADD_GLOSSARIES.md
+│   └── GLOSSARY_SEARCH_METHODS_ANALYSIS.md
+│
+├── 05_advanced_topics/              ← Advanced features
+│   ├── INDEX.md
+│   ├── TRANSLATION_PATTERNS_FOR_PROMPT.md
+│   ├── PROTOCOL_PAIRING_FEASIBILITY.md
+│   ├── PROTOCOL_PAIRS_USAGE_STRATEGY.md
+│   └── TRANSLATION_FEEDBACK_ANALYSIS_AND_RECOMMENDATIONS.md
+│
+├── 06_performance_and_optimization/ ← Optimize & test
+│   ├── INDEX.md
+│   ├── PHASE2_MVP_TEST_PLAN.md
+│   ├── PHASE2_TEST_KIT_ANALYSIS.md
+│   └── TOKEN_USAGE_ANALYSIS_REPORT.md
+│
+└── 07_project_management/           ← Operations & security
+    ├── INDEX.md
+    ├── COMPLETION_REPORT.md
+    └── GIT_SECURITY_CHECKLIST.md
+```
+
+---
+
 ## 🗺️ Quick Navigation
 
-**New to the project?**
-1. Start with [SETUP_CHECKLIST.md](SETUP_CHECKLIST.md) to set up your environment
-2. Read [FILE_ORGANIZATION_GUIDE.md](FILE_ORGANIZATION_GUIDE.md) to understand project structure
-3. Check out the [Architecture & Design](#architecture--design) docs for system overview
+**👤 New to the project?**
+→ Start with [01_getting_started/INDEX.md](01_getting_started/INDEX.md)
+- Setup checklist
+- Project organization
+- Initial configuration
 
-**Looking for specific topics?**
-- 🔄 **Translation pipelines:** See [TRANSLATION_PIPELINE_STEPBYSTEP.md](TRANSLATION_PIPELINE_STEPBYSTEP.md)
-- 💾 **Caching & performance:** See [VALKEY_INTEGRATION_SUMMARY.md](VALKEY_INTEGRATION_SUMMARY.md)
-- 🏷️ **Tag preservation:** See [TAG_PRESERVATION_IMPLEMENTATION.md](TAG_PRESERVATION_IMPLEMENTATION.md)
-- 📊 **Token optimization:** See [TOKEN_USAGE_ANALYSIS_REPORT.md](TOKEN_USAGE_ANALYSIS_REPORT.md)
-- 🧬 **Medical terminology:** See [PROTOCOL_PAIRING_FEASIBILITY.md](PROTOCOL_PAIRING_FEASIBILITY.md)
+**🏗️ Want to understand the system?**
+→ Go to [02_architecture/INDEX.md](02_architecture/INDEX.md)
+- System architecture
+- Component diagrams
+- Design decisions
+
+**⚙️ Ready to use it?**
+→ Read [03_core_features/INDEX.md](03_core_features/INDEX.md)
+- Translation pipeline
+- Caching system
+- Tag preservation
+
+**📚 Need glossary help?**
+→ See [04_glossary_and_terminology/INDEX.md](04_glossary_and_terminology/INDEX.md)
+- How to add glossaries
+- Glossary system overview
+- Search methods
+
+**🚀 Advanced features?**
+→ Check [05_advanced_topics/INDEX.md](05_advanced_topics/INDEX.md)
+- Translation optimization
+- Protocol handling
+- Feedback analysis
+
+**⚡ Performance tuning?**
+→ Visit [06_performance_and_optimization/INDEX.md](06_performance_and_optimization/INDEX.md)
+- Testing strategy
+- Token analysis
+- Performance metrics
+
+**🔐 Operations & security?**
+→ Go to [07_project_management/INDEX.md](07_project_management/INDEX.md)
+- Project status
+- Security checklist
+- Git workflow
 
 ---
 
@@ -520,41 +603,21 @@ This is normal behavior. The system automatically falls back to GPT-4o if GPT-5 
 - Set `LOG_LEVEL=DEBUG` for detailed information
 - Review API rate limits on OpenAI dashboard
 
-## 📚 Documentation Index
+## 📚 Find Specific Topics
 
-### Getting Started
-- **README.md** (this file) - Overview, quick start, and basic usage
-- **SETUP_CHECKLIST.md** - Step-by-step environment setup verification
-- **FILE_ORGANIZATION_GUIDE.md** - Guide to project file organization
+Documentation is organized by category. Use these links to jump to what you need:
 
-### Architecture & Design
-- **PHASE2_MVP_ARCHITECTURE.md** - High-level system architecture and components
-- **PHASE2_ARCHITECTURE_DIAGRAM.md** - Visual architecture diagrams
-- **PHASE2_MVP_TEST_PLAN.md** - Testing strategy and test plan
-- **IMPLEMENTATION_BLUEPRINT.md** - Detailed implementation specifications
+| Need Help With... | Go To... |
+|---|---|
+| Getting started | [01_getting_started/INDEX.md](01_getting_started/INDEX.md) |
+| Understanding architecture | [02_architecture/INDEX.md](02_architecture/INDEX.md) |
+| Using translation features | [03_core_features/INDEX.md](03_core_features/INDEX.md) |
+| Managing glossaries | [04_glossary_and_terminology/INDEX.md](04_glossary_and_terminology/INDEX.md) |
+| Advanced optimization | [05_advanced_topics/INDEX.md](05_advanced_topics/INDEX.md) |
+| Performance & testing | [06_performance_and_optimization/INDEX.md](06_performance_and_optimization/INDEX.md) |
+| Project & security | [07_project_management/INDEX.md](07_project_management/INDEX.md) |
 
-### Core Features
-- **TAG_PRESERVATION_IMPLEMENTATION.md** - CAT tool tag handling and implementation
-- **VALKEY_INTEGRATION_SUMMARY.md** - Caching system architecture and integration
-- **TECHNICAL_IMPLEMENTATION.md** - Technical details of core implementations
-- **TRANSLATION_PATTERNS_FOR_PROMPT.md** - Translation pattern guidelines
-- **TRANSLATION_PIPELINE_STEPBYSTEP.md** - Detailed pipeline workflow documentation
-
-### Advanced Topics
-- **GLOSSARY_SEARCH_METHODS_ANALYSIS.md** - Analysis of glossary search approaches
-- **PROTOCOL_PAIRING_FEASIBILITY.md** - Clinical protocol pairing feasibility study
-- **PROTOCOL_PAIRS_USAGE_STRATEGY.md** - Strategy for protocol pair usage
-- **TRANSLATION_FEEDBACK_ANALYSIS_AND_RECOMMENDATIONS.md** - Feedback analysis and recommendations
-
-### Performance & Analysis
-- **TOKEN_USAGE_ANALYSIS_REPORT.md** - Token usage analysis and optimization
-- **PHASE2_TEST_KIT_ANALYSIS.md** - Test kit analysis and results
-- **TRANSLATION_PATTERNS_FOR_PROMPT.md** - Pattern analysis for prompts
-
-### Project Management
-- **COMPLETION_REPORT.md** - Project completion and status report
-- **GIT_SECURITY_CHECKLIST.md** - Security checklist for git operations
-- **STYLE_GUIDE_AB_TESTING_README.md** (in src/) - A/B testing framework documentation
+**Each category has an INDEX.md file that navigates the documents in that section.**
 
 ## 🔧 Development
 
