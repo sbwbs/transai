@@ -12,6 +12,22 @@ Phase 2 is an advanced medical and clinical document translation system that ach
 - 84% average translation quality score
 - Support for tag preservation (CAT tool integration)
 
+## 🗺️ Quick Navigation
+
+**New to the project?**
+1. Start with [SETUP_CHECKLIST.md](SETUP_CHECKLIST.md) to set up your environment
+2. Read [FILE_ORGANIZATION_GUIDE.md](FILE_ORGANIZATION_GUIDE.md) to understand project structure
+3. Check out the [Architecture & Design](#architecture--design) docs for system overview
+
+**Looking for specific topics?**
+- 🔄 **Translation pipelines:** See [TRANSLATION_PIPELINE_STEPBYSTEP.md](TRANSLATION_PIPELINE_STEPBYSTEP.md)
+- 💾 **Caching & performance:** See [VALKEY_INTEGRATION_SUMMARY.md](VALKEY_INTEGRATION_SUMMARY.md)
+- 🏷️ **Tag preservation:** See [TAG_PRESERVATION_IMPLEMENTATION.md](TAG_PRESERVATION_IMPLEMENTATION.md)
+- 📊 **Token optimization:** See [TOKEN_USAGE_ANALYSIS_REPORT.md](TOKEN_USAGE_ANALYSIS_REPORT.md)
+- 🧬 **Medical terminology:** See [PROTOCOL_PAIRING_FEASIBILITY.md](PROTOCOL_PAIRING_FEASIBILITY.md)
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -25,14 +41,14 @@ Phase 2 is an advanced medical and clinical document translation system that ach
 
 ```bash
 # 1. Navigate to project directory
-cd /Users/won.suh/Project/transai/phase2
+cd /Users/won.suh/Project/transai
 
 # 2. Create Python virtual environment
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # 3. Install Python dependencies
-pip install -r requirements.txt
+pip install -r src/requirements.txt
 
 # 4. Install and start Valkey server
 # Option A: macOS with Homebrew
@@ -46,14 +62,14 @@ docker run -d -p 6379:6379 valkey/valkey
 redis-server
 
 # 5. Configure environment variables
-cp .env.example .env  # Or create .env file manually
+cp src/.env.example src/.env  # Or create src/.env file manually
 ```
 
 ## ⚙️ Configuration
 
 ### Environment Variables (.env)
 
-Create a `.env` file in the project root with the following variables:
+Create a `.env` file in the `src/` directory with the following variables:
 
 ```bash
 # OpenAI Configuration (REQUIRED)
@@ -117,34 +133,52 @@ The system automatically:
 ## 🏗️ Project Structure
 
 ```
-phase2/
-├── src/                           # Core application code
-│   ├── production_pipeline_*.py    # Main translation pipelines
-│   ├── glossary_loader.py          # Glossary file handling
-│   ├── glossary_search.py          # Fuzzy term matching
-│   ├── style_guide_config.py       # 10 translation style variants
-│   ├── memory/                     # Caching layer
-│   │   ├── valkey_manager.py       # Valkey/Redis integration
-│   │   ├── session_manager.py      # Session tracking
-│   │   └── consistency_tracker.py  # Term consistency
-│   └── utils/                      # Utilities
-│       ├── tag_handler.py          # CAT tool tag preservation
-│       └── segment_filter.py       # Content filtering
-├── data/                          # Glossaries and test data
-│   ├── sample_glossary.json        # Example glossary format
-│   ├── sample_test_data.json       # Example test segments
-│   ├── production_glossary.json    # Full glossary (if available)
-│   └── combined_en_ko_glossary.xlsx # Clinical terminology
-├── clinical_protocol_system/      # Clinical protocol specialization
-│   ├── extract_protocol_terms.py   # Term extraction
-│   └── data/
-│       └── protocol_terms.json     # Clinical terminology database
-├── tests/                         # Unit and integration tests
-├── docs/                          # Technical documentation
-├── logs/                          # Application logs
-├── requirements.txt               # Python dependencies
-├── .env                           # Configuration (DO NOT COMMIT)
-└── README.md                      # This file
+transai/
+├── src/                                    # Core application code
+│   ├── production_pipeline_*.py            # Main translation pipelines
+│   │   ├── production_pipeline_batch_enhanced.py      # RECOMMENDED - General purpose
+│   │   ├── production_pipeline_en_ko.py               # EN→KO clinical specialization
+│   │   ├── production_pipeline_ko_en_improved.py      # KO→EN with tag preservation
+│   │   └── production_pipeline_with_style_guide.py    # Style guide variants
+│   ├── glossary/                          # Glossary management
+│   │   ├── glossary_loader.py             # Load glossary files
+│   │   ├── glossary_search.py             # Fuzzy term matching
+│   │   └── create_combined_glossary.py    # Glossary creation
+│   ├── style_guide_config.py              # 10 translation style variants
+│   ├── memory/                            # Caching layer (3-tier architecture)
+│   │   ├── valkey_manager.py              # Valkey/Redis integration
+│   │   ├── session_manager.py             # Session tracking & progress
+│   │   ├── consistency_tracker.py         # Term consistency maintenance
+│   │   └── cached_glossary_search.py      # Cached glossary lookups
+│   ├── utils/                             # Utilities
+│   │   ├── tag_handler.py                 # CAT tool tag preservation
+│   │   └── segment_filter.py              # Content filtering
+│   ├── clinical_protocol_system/          # Medical specialization
+│   │   ├── extract_protocol_terms.py      # Protocol term extraction
+│   │   ├── agents/                        # AI agent configurations
+│   │   ├── templates/                     # Prompt templates
+│   │   └── data/                          # Protocol terminology
+│   ├── tests/                             # Unit and integration tests
+│   ├── data/                              # Glossaries and test data
+│   │   ├── production_glossary.json       # Full glossary (503KB)
+│   │   ├── production_glossary.xlsx       # Excel format (155KB)
+│   │   ├── combined_en_ko_glossary.xlsx   # Clinical terminology (20KB)
+│   │   ├── sample_glossary.json           # Example format
+│   │   └── sample_test_data.json          # Test segments
+│   ├── analysis/                          # Analysis tools
+│   ├── evaluation/                        # Evaluation metrics
+│   ├── results/                           # Execution results
+│   ├── config/                            # Configuration files
+│   ├── logs/                              # Application logs
+│   ├── requirements.txt                   # Python dependencies
+│   ├── .env                               # Configuration (DO NOT COMMIT)
+│   └── README.md                          # Src directory documentation
+│
+├── docs/                                  # Technical documentation
+│   ├── README.md                          # This file (navigation & quick start)
+│   └── [See Documentation Index below]
+│
+└── README.md                              # Root project README
 ```
 
 ## 🔄 Translation Pipelines
@@ -486,14 +520,41 @@ This is normal behavior. The system automatically falls back to GPT-4o if GPT-5 
 - Set `LOG_LEVEL=DEBUG` for detailed information
 - Review API rate limits on OpenAI dashboard
 
-## 📚 Documentation
+## 📚 Documentation Index
 
-Additional documentation available in `docs/`:
+### Getting Started
+- **README.md** (this file) - Overview, quick start, and basic usage
+- **SETUP_CHECKLIST.md** - Step-by-step environment setup verification
+- **FILE_ORGANIZATION_GUIDE.md** - Guide to project file organization
 
-- **PHASE2_MVP_ARCHITECTURE.md** - System architecture diagrams
-- **TAG_PRESERVATION_IMPLEMENTATION.md** - Tag handling details
-- **VALKEY_INTEGRATION_SUMMARY.md** - Caching architecture
-- **TECHNICAL_IMPLEMENTATION.md** - Implementation details
+### Architecture & Design
+- **PHASE2_MVP_ARCHITECTURE.md** - High-level system architecture and components
+- **PHASE2_ARCHITECTURE_DIAGRAM.md** - Visual architecture diagrams
+- **PHASE2_MVP_TEST_PLAN.md** - Testing strategy and test plan
+- **IMPLEMENTATION_BLUEPRINT.md** - Detailed implementation specifications
+
+### Core Features
+- **TAG_PRESERVATION_IMPLEMENTATION.md** - CAT tool tag handling and implementation
+- **VALKEY_INTEGRATION_SUMMARY.md** - Caching system architecture and integration
+- **TECHNICAL_IMPLEMENTATION.md** - Technical details of core implementations
+- **TRANSLATION_PATTERNS_FOR_PROMPT.md** - Translation pattern guidelines
+- **TRANSLATION_PIPELINE_STEPBYSTEP.md** - Detailed pipeline workflow documentation
+
+### Advanced Topics
+- **GLOSSARY_SEARCH_METHODS_ANALYSIS.md** - Analysis of glossary search approaches
+- **PROTOCOL_PAIRING_FEASIBILITY.md** - Clinical protocol pairing feasibility study
+- **PROTOCOL_PAIRS_USAGE_STRATEGY.md** - Strategy for protocol pair usage
+- **TRANSLATION_FEEDBACK_ANALYSIS_AND_RECOMMENDATIONS.md** - Feedback analysis and recommendations
+
+### Performance & Analysis
+- **TOKEN_USAGE_ANALYSIS_REPORT.md** - Token usage analysis and optimization
+- **PHASE2_TEST_KIT_ANALYSIS.md** - Test kit analysis and results
+- **TRANSLATION_PATTERNS_FOR_PROMPT.md** - Pattern analysis for prompts
+
+### Project Management
+- **COMPLETION_REPORT.md** - Project completion and status report
+- **GIT_SECURITY_CHECKLIST.md** - Security checklist for git operations
+- **STYLE_GUIDE_AB_TESTING_README.md** (in src/) - A/B testing framework documentation
 
 ## 🔧 Development
 
